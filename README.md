@@ -1,13 +1,38 @@
-# I've open-sourced my life and here's how you can, too
+# *rtts/Debian*
+
+**A complete, minimalist Debian setup for power users**
 
 Whether or not you believe Free and Open Source Software is the
-saviour of humanity (I do!), it's also an incredibly practical way to
-use your computer. This repository contains the exact configuration of
-all my workstations, gaming computers, laptops and even a couple of
-VPSes. Of course, your situation will differ, but I believe the
-installation instructions and Ansible roles contained herein will be a
-great starting point for anyone who wants to enjoy using their
-computer to its maximum potential.
+saviour of humanity, it's also an incredibly practical way to use your
+computer. This repository contains the exact configuration of all my
+workstations, gaming computers, laptops and even a couple of VPSes. Of
+course, your situation will differ, but I believe the installation
+instructions and Ansible roles contained herein will be a great
+starting point for anyone who wants to enjoy using their computer to
+its maximum potential.
+
+## FAQ
+
+### Is this a GNU/Linux distribution?
+
+Yes, it kind of is! Except that all that I'm distributing is a bunch
+of Ansible roles and the installation instructions. If for nothing but
+my own benefit, I would love to one day compile all this into a custom
+Debian installer.
+
+### Why should I use this instead of distribution X?
+
+You should not use this at all, this system is tailored exactly to my
+own needs and nothing more. However, you may find some good
+configuration gems here that you can use in your own setup. Find an
+old laptop or spin up a VM and give it a try if you want to see how a
+fellow GNU/Linux enthusiast has configured their computer!
+
+### How can I install it?
+
+Keep reading! This README contains all the steps required to install
+Debian, set up the base system, and run the Ansible playbook that will
+take care of the remaining configuration.
 
 ## The starting point
 
@@ -61,10 +86,9 @@ because we'll configure the important things first.
 The only program currently running on your fresh installation is SSH.
 Let's make sure it's running securely by logging in, configuring
 public/private key authentication, disabling password authentication,
-and then logging out again. Once you've accomplished that, you can
-accomplish anything, because you will have remote access with sudo
-powers, which is all that is needed to take full control over your
-computer.
+and then logging out again. Once you've accomplished that, you will
+have remote access with sudo powers, which is all that is needed to
+take full control over your computer.
 
 On the host computer, run:
 
