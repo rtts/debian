@@ -44,8 +44,8 @@ mode", but if you manage to boot the installer in "UEFI mode" that is
 probably even better. The second hardest part choosing a hostname for
 the new system. Get some inspiration for great names at
 https://namingschemes.com/. Carefully follow the installation
-instructions and choose the partitioning method "Guided - Use entire
-disk and set up encrypted LVM" for maximum security. At the end of the
+instructions and choose the partitioning method "Use entire disk and
+set up encrypted LVM" for maximum security. At the end of the
 installation you'll see this:
 
 ![Tasksel](https://raw.githubusercontent.com/rtts/debian/main/doc/tasksel.png)
@@ -135,7 +135,7 @@ with a number of useful software packages installed and thousands more
 just one `apt install` away. Let me guide you to how to use this setup
 and how to customize it to your wishes.
 
-After the system boots, you will be greated with the following
+After the system boots, you will be greeted with the following
 message-of-the-day:
 
        ___      __   _         
