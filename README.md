@@ -5,7 +5,7 @@ saviour of humanity (I do!), it's also an incredibly practical way to
 use your computer. This repository contains the exact configuration of
 all my workstations, gaming computers, laptops and even a couple of
 VPSes. Of course, your situation will differ, but I believe the
-installation instructions and playbooks contained herein will be a
+installation instructions and Ansible roles contained herein will be a
 great starting point for anyone who wants to enjoy using their
 computer to its maximum potential.
 
@@ -40,10 +40,10 @@ that you arrive at the following screen:
 ![Debian installer](https://raw.githubusercontent.com/rtts/debian/main/doc/debian.png)
 
 Hurrah! The hardest part -- getting the UEFI/BIOS to successfully boot
-from a USB stick -- is over! Note that the screenshot says "BIOS", but
-if you manage to boot the installer in "UEFI" mode that is probably
-even better. The second hardest part choosing a hostname for the new
-system. Get some inspiration for great names at
+from a USB stick -- is over! Note that the screenshot says "BIOS
+mode", but if you manage to boot the installer in "UEFI mode" that is
+probably even better. The second hardest part choosing a hostname for
+the new system. Get some inspiration for great names at
 https://namingschemes.com/. After you have chosen a name, follow the
 installation instructions, be very careful when re-partitioning your
 hard drive, and at the end of the installation you'll see this:
@@ -82,7 +82,7 @@ And change the line containing `PasswordAuthentication` to:
 
     PasswordAuthentication no
 
-To make the following steps a little easier, give yourself
+To make the remaining steps a little easier, give yourself
 passwordless sudo access by running:
 
     $ sudo visudo
@@ -92,8 +92,8 @@ And change the line containing `%sudo` to:
     %sudo ALL=(ALL:ALL) NOPASSWD:ALL
 
 Not coincidentally, this is everything that's required to run the
-Ansible playbooks that are included in this repository, which will
-further set up your system for general use.
+Ansible playbook inside this repository, which will further set up
+your system for general use.
 
 ## Run the playbook
 
@@ -103,23 +103,24 @@ the host computer, install [Git](https://git-scm.com/) and
 clone this repository:
 
     $ sudo apt install git ansible
-    $ git clone https://github.com/rtts/ansible
-    $ cd ansible
+    $ git clone https://github.com/rtts/debian
+    $ cd debian
 
 The playbook is divided into a number of hosts, with each host having
 a number of roles. The roles are meant to be reusable, so you can
 easily choose to, for example, configure a host with the `common` and
 `X` roles, but not with the `workstation` role. I personally use that
 combination for computers that are being used as kiosks in various
-locations (the copy shop and the museum). Another useful combination
-is `common` and `webserver` for the VPS that serves my [personal home
-page](https://jaapjoris.nl/). That is the power of using a single
-source of configuration for all your computers!
+locations, such as a copy shop and a museum. Another useful
+combination is `common`, `database`, and `webserver` for the VPS that
+serves my [personal home page](https://jaapjoris.nl/). That is the
+power of using a single source of configuration for all your
+computers!
 
 For now, however, let's assume you are setting up a personal computer
 that is in your physical possesion, such as a laptop or a desktop
 computer. Open the file `inventory.ini` and add your hostname to the
-`[workstation]` section and, if it's a laptop, to the `[laptops]`
+`[workstations]` section and, if it's a laptop, to the `[laptops]`
 section. Leave off the `.local` extension, as SSH will be configured
 to append that by default as soon as we'll run the playbook.
 
@@ -156,8 +157,8 @@ the other dotfiles that were placed there by the playbook.
 
 Here are the most important keyboard shortcuts you need to know:
 
-- `Windows - Shift - Enter` opens a new terminal
-- `Windows - [1-9]` switches to the virtual desktop 1-9
+- `Windows - Shift - Enter` opens a new terminal.
+- `Windows - [1-9]` switches to the virtual desktop 1 through 9.
 - `Windows - P` launches `dmenu`. Type the starting letters of a
   graphical program, such as `chromium` or `firefox` and press Enter
   to launch it.
@@ -219,9 +220,9 @@ installed by the `Xworkstation` role.
 ### Audio recording
 
 I use Audacity (`apt install audacity`) to record high-quality audio
-using a Focusrite Scarlet 2i2, which works phenomenally under Linux
-and PulseAudio. All I needed to do was plug the device in and attach
-speakers, and all audio was routed correctly by default.
+using a Focusrite Scarlet 2i2, which works phenomenally well under
+Linux and PulseAudio. All I needed to do was plug the device in and
+attach speakers, and all audio was routed correctly by default.
 
 ### Programming
 
@@ -239,7 +240,7 @@ default. Read `man mpv` to find out all the available options of this
 grand successor to `mplayer`. Unfortunately, it is currently not easy
 to legally acquire stuff to play with `mpv`, so you'll have to resort
 to semi-legal options like `youtube-dl` (`apt install youtube-dl`) or
-illegal options like Yify movies.
+illegal options like Yify.
 
 ### Gaming
 
