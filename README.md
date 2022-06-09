@@ -176,8 +176,8 @@ Here are the most important keyboard shortcuts you need to know:
 
 ## More possibilities
 
-In no particular order, here are some things that I've done using this
-setup.
+In no particular order, here are some things that you can do using
+this setup.
 
 ### Web browsing
 
@@ -198,12 +198,12 @@ still use the `!g` bang to search Google.
 
 Put that keyboard in your computer to good use! During my studies, I
 used LaTeX to write my thesis, but when other people email me Word and
-Excel files I use LibreOffice to open them. All are installed by default
-after running the playbook.
+Excel files I use LibreOffice to open them. Both are installed by
+default after running the playbook.
 
 ### Lego CAD editing
 
-I used [LDCad](http://www.melkert.net/LDCad) to create building
+I use [LDCad](http://www.melkert.net/LDCad) to create building
 instructions for [my Lego models](https://jj.created.today/). It's the
 only piece of non-open source software on my computer, but I've
 emailed the author and he assured me he would open source it before
@@ -237,12 +237,14 @@ become a true Unix hacker!
 
 ### Entertainment
 
-I love `mpv` so much it's included in the `Xworkstation` role by
-default. Read `man mpv` to find out all the available options of this
-grand successor to `mplayer`. Unfortunately, it is currently not easy
-to legally acquire stuff to play with `mpv`, so you'll have to resort
-to semi-legal options like `youtube-dl` (`apt install youtube-dl`) or
-illegal options like Yify.
+I love [mpv](https://mpv.io/) so much it's included in the
+`Xworkstation` role by default. Read `man mpv` to find out all the
+available options of this grand successor to `mplayer`. Unfortunately,
+it is currently not easy to legally acquire stuff to play with `mpv`,
+so you're almost forced to resort to semi-legal options like
+`youtube-dl` (`apt install youtube-dl`) or illegal options like Yify.
+Netflix runs fine however using Firefox after enabling DRM (not in
+Chromium, because it lacks the required Widevine DRM).
 
 ### Gaming
 
@@ -254,7 +256,7 @@ download and run a large number of MS-DOS games. Here's how to install
 and run it:
 
     $ sudo apt install dosbox
-    $ pip3 install ialauncher
+    $ pip install ialauncher
     $ ialauncher --no-fullscreen
 
 The `--no-fullscreen` argument is there because `xmonad` will already
@@ -269,11 +271,11 @@ a habit to run the following commands every week:
     $ sudo apt upgrade
 
 Also, because I like bleeding-edge software, I've edited
-`/etc/apt/source.list` to contain (only) the following:
+`/etc/apt/source.list` to contain the following:
 
     deb http://ftp.nl.debian.org/debian/ sid main non-free contrib
     deb-src http://ftp.nl.debian.org/debian/ sid main non-free contrib
 
 This means I'm running [Debian Sid](https://wiki.debian.org/DebianUnstable)
 a.k.a. "Unstable", although in my 10 years of running it I have never
-ran into problems. Use Sid at your own risk.
+experienced any instability. Use Sid at your own risk.
