@@ -1,0 +1,49 @@
+#!/usr/bin/env ansible-playbook
+
+- hosts: all
+  roles:
+    - role: common
+      tags: common
+
+- hosts: webservers
+  roles:
+    - role: database
+      tags: database
+    - role: mailserver
+      tags: mailserver
+    - role: webserver
+      tags: webserver
+
+- hosts: workstations
+  roles:
+    - role: database
+      tags: database
+    - role: mailserver
+      tags: mailserver
+    - role: workstation
+      tags: workstation
+    - role: X
+      tags: X
+    - role: Xworkstation
+      tags: Xworkstation
+
+  tasks:
+    - name: Fetch public ssh key
+      shell: 'cat ~/.ssh/id_rsa.pub'
+      register: public_key
+      changed_when: false
+
+    - name: Allow this host to access all others
+      authorized_key:
+        user: '{{ ansible_user_id }}'
+        state: present
+        key: '{{ public_key.stdout }}'
+      delegate_to: '{{ item }}'
+      with_items: '{{ groups.all }}'
+      failed_when: false
+      no_log: true
+
+- hosts: laptops
+  roles:
+    - role: laptop
+      tags: laptop
