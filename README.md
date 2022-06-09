@@ -24,14 +24,14 @@ installer.
 ### Why should I use this instead of distribution X?
 
 You should not use this at all, this system is tailored exactly to my
-own needs and nothing more. However, you may find some good
-configuration gems here that you can use in your own setup. Find an
-old laptop or spin up a VM and give it a try if you want to see how a
-fellow GNU/Linux enthusiast has configured their computer!
+own needs and nothing more. However, you may find some configuration
+gems here that you can use in your own setup. Find an old laptop or
+spin up a VM and give it a try if you want to see how a fellow
+GNU/Linux enthusiast has configured their computer!
 
 ### How can I install it?
 
-Keep reading! This README contains all the steps required to install
+Keep reading! This README contains all the steps needed to install
 Debian, set up the base system, and run the Ansible playbook that will
 take care of the remaining configuration.
 
