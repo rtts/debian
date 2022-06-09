@@ -70,7 +70,7 @@ On the host computer, run:
 
     $ sudo apt install libnss-mdns
 
-If you have another computer, run this to give it SSH access:
+On the host computer or on another computer, if you have one, run:
 
     $ ssh-copy-id <hostname>.local
 
@@ -92,8 +92,8 @@ And change the line containing `%sudo` to:
     %sudo ALL=(ALL:ALL) NOPASSWD:ALL
 
 Not coincidentally, this is everything that's required to run the
-Ansible playbook inside this repository, which will further set up
-your system for general use.
+Ansible playbook from this repository, which will completely set up
+the system for general use.
 
 ## Run the playbook
 
