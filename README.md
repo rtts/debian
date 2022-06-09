@@ -1,6 +1,6 @@
-# *rtts/Debian*
+# rtts/Debian
 
-**A complete, minimalist Debian setup for power users**
+***A complete, minimalist Debian setup for power users***
 
 Whether or not you believe Free and Open Source Software is the
 saviour of humanity, it's also an incredibly practical way to use your
@@ -16,9 +16,10 @@ its maximum potential.
 ### Is this a GNU/Linux distribution?
 
 Yes, it kind of is! Except that all that I'm distributing is a bunch
-of Ansible roles and the installation instructions. If for nothing but
-my own benefit, I would love to one day compile all this into a custom
-Debian installer.
+of [Ansible](https://docs.ansible.com/ansible/latest/index.html) roles
+and the installation instructions. If for nothing but my own benefit,
+I would love to one day compile all this into a custom Debian
+installer.
 
 ### Why should I use this instead of distribution X?
 
