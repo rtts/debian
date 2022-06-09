@@ -1,6 +1,6 @@
 # rtts/Debian
 
-***A complete, minimalist Debian setup for power users***
+### *A complete, minimalist Debian setup for power users*
 
 **Whether or not you believe Free and Open Source Software is the
 saviour of humanity, it's also an incredibly practical way to use your
