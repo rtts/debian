@@ -15,12 +15,11 @@ computer to its maximum potential.
 
 Let's return to the source and start with a minimal, vanilla Debian
 installation. I prefer to download the installer image
-[here](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/weekly-builds/amd64/iso-cd/),
-(instead of the rock-solid [stable release](https://www.debian.org/download))
+[here](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/weekly-builds/amd64/iso-cd/)
 because this will get you the latest version of Debian including the
 non-free firmware that's often needed to get networking and sound to
-work properly. For servers, however, I recommend the stable
-distribution.
+work properly. For servers, however, I recommend the rock-solid
+[stable release](https://www.debian.org/download).
 
 Write the image to a USB flash drive with:
 
@@ -39,14 +38,15 @@ that you arrive at the following screen:
 
 ![Debian installer](https://raw.githubusercontent.com/rtts/debian/main/doc/debian.png)
 
-Hurrah! The hardest part -- getting the UEFI/BIOS to successfully boot
+Hurrah! The hardest part -- getting your computer to successfully boot
 from a USB stick -- is over! Note that the screenshot says "BIOS
 mode", but if you manage to boot the installer in "UEFI mode" that is
 probably even better. The second hardest part choosing a hostname for
 the new system. Get some inspiration for great names at
-https://namingschemes.com/. After you have chosen a name, follow the
-installation instructions, be very careful when re-partitioning your
-hard drive, and at the end of the installation you'll see this:
+https://namingschemes.com/. Carefully follow the installation
+instructions and choose the partitioning method "Guided - Use entire
+disk and set up encrypted LVM" for maximum security. At the end of the
+installation you'll see this:
 
 ![Tasksel](https://raw.githubusercontent.com/rtts/debian/main/doc/tasksel.png)
 
