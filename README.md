@@ -2,14 +2,14 @@
 
 ***A complete, minimalist Debian setup for power users***
 
-Whether or not you believe Free and Open Source Software is the
+**Whether or not you believe Free and Open Source Software is the
 saviour of humanity, it's also an incredibly practical way to use your
 computer. This repository contains the exact configuration of all my
 workstations, gaming computers, laptops and even a couple of VPSes. Of
 course, your situation will differ, but I believe the installation
 instructions and Ansible roles contained herein will be a great
 starting point for anyone who wants to enjoy using their computer to
-its maximum potential.
+its maximum potential.**
 
 ## FAQ
 
