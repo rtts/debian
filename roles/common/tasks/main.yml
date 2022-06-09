@@ -1,0 +1,114 @@
+- name: Disable ssh password login
+  become: true
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: 'PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+
+- name: Set hostname to {{ inventory_hostname_short }}
+  become: true
+  hostname:
+    name: '{{ inventory_hostname_short }}'
+
+- name: Set FQDN hostname to {{ inventory_hostname }}
+  become: true
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: '127.0.1.1 {{ inventory_hostname }} {{ inventory_hostname_short }}'
+
+- name: Set mailname to {{ inventory_hostname }}
+  become: true
+  copy:
+    dest: /etc/mailname
+    content: "{{ inventory_hostname }}\n"
+
+- name: Set timezone to Europe/Amsterdam
+  become: true
+  timezone:
+    name: Europe/Amsterdam
+
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - bash-completion
+      - figlet
+      - git
+      - joe
+      - libnss-mdns
+      - rsync
+
+- name: Configure keyboard
+  become: true
+  lineinfile:
+    path: /etc/default/keyboard
+    regexp: XKBOPTIONS
+    line: 'XKBOPTIONS="ctrl:nocaps,compose:prsc,lv3:ralt_switch"'
+
+- name: Set default editor to Jmacs
+  become: true
+  alternatives:
+    name: editor
+    path: /usr/bin/jmacs
+
+- name: Configure Jmacs
+  become: true
+  lineinfile:
+    path: /etc/joe/jmacsrc
+    regexp: '^[^-]*-{{ item }}'
+    backrefs: yes
+    line: '-{{ item }}'
+  loop:
+    - nobackups
+    - nodeadjoe
+    - french
+
+- name: Generate SSH keys for root
+  become: true
+  user:
+    name: root
+    generate_ssh_key: true
+
+- name: Generate SSH keys for {{ ansible_user_id }}
+  user:
+    name: '{{ ansible_user_id }}'
+    generate_ssh_key: true
+
+- name: Find pre-existing message-of-the-day scripts
+  find:
+    paths: /etc/update-motd.d
+    file_type: any
+    excludes:
+      - 20-stats
+      - 30-packages
+  register: found_files
+
+- name: ...and delete them
+  become: true
+  file:
+    path: '{{ item }}'
+    state: absent
+  loop: '{{ found_files["files"] | map(attribute="path") + ["/etc/motd"] }}'
+
+- name: Install custom message-of-the-day
+  become: true
+  copy:
+    src: '{{ item }}'
+    dest: /etc/update-motd.d
+    mode: 0755
+  loop:
+    - 20-stats
+    - 30-packages
+
+- name: Configure readline completion
+  become: true
+  copy:
+    src: inputrc
+    dest: /etc/
+
+- name: Copy dotfiles (it’s only .bashrc)
+  copy:
+    src: dotfiles/
+    dest: "~"

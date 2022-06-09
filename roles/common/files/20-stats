@@ -1,0 +1,7 @@
+#!/bin/bash
+name=$(hostname)
+figlet -f smslant ${name^}
+free -m | awk 'NR==2 {printf "Memory: %s/%sMB (%.0f%%)\n", $3,$2,$3*100/$2 }'
+df -h -t ext4 | awk '/^\// {printf "Disk %s: %d/%dGB (%s)\n", $6,$3,$2,$5}'
+echo "Load average: $(cat /proc/loadavg | cut -d' ' -f1-3)"
+

@@ -1,0 +1,15 @@
+# Configuration file for GNU Readline, see `man 3 readline`
+# for more information.
+
+set input-meta on
+set output-meta on
+
+# Complete both upper- and lowercase
+set completion-ignore-case On
+
+# Autocomplete immediately
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# Don't treat symlinked directories as files
+set mark-symlinked-directories on

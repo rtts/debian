@@ -1,0 +1,6 @@
+#!/bin/bash
+upgradable=$(apt list --upgradable 2> /dev/null | wc -l)
+if ((upgradable-- > 1))
+then
+    echo "$upgradable packages can be upgraded!"
+fi

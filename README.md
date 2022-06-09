@@ -138,15 +138,15 @@ and how to customize it to your wishes.
 After the system boots, you will be greated with the following
 message-of-the-day:
 
-     ______    __       
-    /_  __/__ / /__  ___
-     / / / -_) / _ \(_-<
-    /_/  \__/_/\___/___/
+       ___      __   _         
+      / _ \___ / /  (_)__ ____ 
+     / // / -_) _ \/ / _ `/ _ \
+    /____/\__/_.__/_/\_,_/_//_/
 
-    Memory: 3220/7838MB (41%)
-    Disk /: 118/226GB (55%)
-    Load average: 1.21 1.22 1.19
-    jj@telos:~$ 
+    Memory: 119/974MB (12%)
+    Disk /: 1/4GB (36%)
+    Load average: 0.22 0.08 0.02
+    jj@debian:~$ 
 
 This message is shown in the blazingly fast terminal emulator
 `rxvt-unicode` displayed by the tiling window manager `xmonad`. A
