@@ -51,7 +51,7 @@ Write the image to a USB flash drive with:
 
     sudo dd if=debian-testing-amd64-netinst.iso of=/dev/sdX
 
-But make sure you substitute `X` with the correct letter of your USB
+Make sure you substitute `X` with the correct letter of your USB
 drive. If this is your first time installing GNU/Linux, you'll have to
 google for an alternative to `dd` for the operating system you're
 currently using. There are plenty, but none of them are as
@@ -64,11 +64,11 @@ that you arrive at the following screen:
 
 ![Debian installer](https://raw.githubusercontent.com/rtts/debian/main/doc/debian.png)
 
-Hurrah! The hardest part -- getting your computer to successfully boot
-from a USB stick -- is over! Note that the screenshot says "BIOS
-mode", but if you manage to boot the installer in "UEFI mode" that is
-probably even better. The second hardest part choosing a hostname for
-the new system. Get some inspiration for great names at
+Hurrah! The hardest part – getting your computer to successfully boot
+from a USB stick – is over! Note that the screenshot says "BIOS mode",
+but if you manage to boot the installer in "UEFI mode" that is
+probably even better. The second hardest part is choosing a hostname
+for the new system. Get some inspiration for great names at
 https://namingschemes.com/. Carefully follow the installation
 instructions and choose the partitioning method "Use entire disk and
 set up encrypted LVM" for maximum security. At the end of the
