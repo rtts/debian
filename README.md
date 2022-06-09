@@ -162,6 +162,8 @@ Here are the most important keyboard shortcuts you need to know:
 - `Windows - P` launches `dmenu`. Type the starting letters of a
   graphical program, such as `chromium` or `firefox` and press Enter
   to launch it.
+- `Windows - Tab` cycles between the windows on the current virtual
+  desktop.
 - `Windows - Space` switches between fullscreen and tiled window
   layouts.
 - When in tiled layout, `Windows - ,` and `Windows - .` do something
