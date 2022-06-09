@@ -86,10 +86,10 @@ because we'll configure the important things first.
 
 The only program currently running on your fresh installation is SSH.
 Let's make sure it's running securely by logging in, configuring
-public/private key authentication, disabling password authentication,
-and then logging out again. Once you've accomplished that, you will
-have remote access with sudo powers, which is all that is needed to
-take full control over your computer.
+public/private key authentication, and disabling password
+authentication, Once you've accomplished that, you will have remote
+access with sudo powers, which is all that is needed to take full
+control over your computer.
 
 On the host computer, run:
 
