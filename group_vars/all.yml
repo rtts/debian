@@ -1,0 +1,6 @@
+# These variables are needed to successfully send and receive email.
+domain_name: 
+email_address: 
+smtp_server: 
+smtp_username: 
+smtp_password: 

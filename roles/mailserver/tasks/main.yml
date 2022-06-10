@@ -1,0 +1,36 @@
+- name: Install mail server
+  become: true
+  apt:
+    state: present
+    name:
+      - exim4
+
+- name: Set mailname
+  become: true
+  copy:
+    dest: /etc/mailname
+    content: "{{ inventory_hostname_short }}.{{ domain_name }}\n"
+  when: domain_name
+
+- name: Configure mail server
+  become: true
+  template:
+    src: update-exim4.conf.conf
+    dest: /etc/exim4/
+  notify: update exim4
+  when: domain_name and smtp_server
+
+- name: Set SMTP credentials
+  become: true
+  copy:
+    content: "{{ smtp_server }}:{{ smtp_username }}:{{ smtp_password }}\n"
+    dest: /etc/exim4/passwd.client
+  when: smtp_server and smtp_username and smtp_password
+
+- name: Configure email forwarding
+  become: true
+  lineinfile:
+    path: /etc/aliases
+    regexp: 'root:'
+    line: 'root: {{ email_address }}'
+  when: email_address

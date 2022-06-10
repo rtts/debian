@@ -10,18 +10,12 @@
   hostname:
     name: '{{ inventory_hostname_short }}'
 
-- name: Set FQDN hostname to {{ inventory_hostname }}
+- name: Set FQDN hostname to {{ inventory_hostname_short }}.{{ domain_name | default("local", true) }}
   become: true
   lineinfile:
     path: /etc/hosts
     regexp: '^127\.0\.1\.1'
-    line: '127.0.1.1 {{ inventory_hostname }} {{ inventory_hostname_short }}'
-
-- name: Set mailname to {{ inventory_hostname }}
-  become: true
-  copy:
-    dest: /etc/mailname
-    content: "{{ inventory_hostname }}\n"
+    line: '127.0.1.1 {{ inventory_hostname_short }}.{{ domain_name | default("local", true) }} {{ inventory_hostname_short }}'
 
 - name: Set timezone to Europe/Amsterdam
   become: true

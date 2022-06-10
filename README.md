@@ -132,7 +132,7 @@ clone this repository:
     $ cd debian
 
 The playbook is divided into a number of hosts, with each host having
-a number of roles. The roles are meant to be reusable, so you can
+a number of roles. The roles are meant to be composable, so you can
 easily choose to, for example, configure a host with the `common` and
 `X` roles, but not with the `workstation` role. I personally use that
 combination for computers that are being used as kiosks in various
@@ -146,8 +146,10 @@ For now, however, let's assume you are setting up a personal computer
 that is in your physical possesion, such as a laptop or a desktop
 computer. Open the file `inventory.ini` and add your hostname to the
 `[workstations]` section and, if it's a laptop, to the `[laptops]`
-section. Leave off the `.local` extension, as SSH will be configured
-to append that by default as soon as we'll run the playbook.
+section. If you want the system to be able to send and receive email,
+please provide your email credentials in `group_vars/all.yml`. I
+highly recommend [Fastmail](https://www.fastmail.com/) as an email
+provider.
 
 Now run the playbook!
 
