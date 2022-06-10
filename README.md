@@ -17,8 +17,8 @@ its maximum potential.**
 
 Yes, it kind of is! Except that all that I'm distributing is a bunch
 of [Ansible](https://docs.ansible.com/ansible/latest/index.html) roles
-and the installation instructions. If for nothing but my own benefit,
-I would love to one day compile all this into a custom Debian
+and the installation instructions. Even if for nothing but my own
+benefit, I would love to one day compile all this into a custom Debian
 installer.
 
 ### Why should I use this instead of distribution X?
