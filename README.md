@@ -253,14 +253,31 @@ access to their incredible [Bang syntax](https://duckduckgo.com/bang)
 when doing searches. In practice, however, most of my web searches
 still use the `!g` bang to search Google.
 
-### Writing
+### Email
 
-Put that keyboard in your computer to good use! During my studies, I
-used LaTeX to write my thesis, but when other people email me Word and
-Excel files I use LibreOffice to open them. Both are installed by
-default after running the playbook.
+Email configuration is split up into two roles:
 
-### Lego CAD editing
+1. `mailserver`
+2. `mailclient`
+
+The `mailserver` role configures Exim4 to send all outgoing emails
+through a smarthost of your choosing, solving the mystery of XKCD 838:
+
+![XKCD 838](https://imgs.xkcd.com/comics/incident.png)
+
+The `mailclient` role installs [mutt](http://www.mutt.org/) for a
+single user only, assuming that user is you. Launch it by typing
+`mutt` at the command line and be amazed at the usability of it. It
+has a [lengthy manual](http://www.mutt.org/doc/manual/), but for basic
+usage all you need is the arrow keys and the following shortcuts:
+
+- `m`: Send new email
+- `r`: Reply to the current email
+- `t`: Mark the current email for deletion/archival
+- `d`: Delete the marked emails
+- `A`: Archive the marked emails
+
+### Lego CAD
 
 I use [LDCad](http://www.melkert.net/LDCad) to create building
 instructions for [my Lego models](https://jj.created.today/). It's the
