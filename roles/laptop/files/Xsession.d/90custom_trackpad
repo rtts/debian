@@ -1,0 +1,11 @@
+# Eee PC
+xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1
+
+# X260
+xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1
+
+# T440
+xinput set-prop 'Synaptics TM2668-001' 'libinput Tapping Enabled' 1
+
+# T14
+xinput set-prop 'Synaptics TM3471-020' 'libinput Tapping Enabled' 1

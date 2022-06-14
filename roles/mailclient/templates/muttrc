@@ -1,0 +1,59 @@
+set quit = ask-yes
+set header_cache = ~/.mutt/header_cache
+set sort = reverse-date-received
+set mail_check = 10
+set timeout = 10
+set alias_file = "~/.mutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+set auto_tag = yes
+set include = yes
+set smart_wrap = yes
+set mark_old = no
+set beep = no
+set beep_new = no
+set display_filter = ~/.mutt/add_alias
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set reverse_name = yes
+set reverse_realname = no
+set arrow_cursor = yes
+set fast_reply = yes
+set forward_format = "FW: %s"
+{% raw %}
+set index_format = "%4C %Z %{%b %d} %-25.25f (%?l?%4l&%4c?) %s"
+{% endraw %}
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+bind pager <up> previous-line
+bind pager k previous-line
+bind pager <down> next-line
+bind pager j next-line
+bind pager <left> previous-unread
+bind pager <right> next-unread
+
+# From https://unix.stackexchange.com/questions/290331/in-mutt-how-can-i-easily-attach-files-which-contain-spaces-in-their-name
+macro editor <space> "\Cv "
+bind editor \e\  buffy-cycle
+
+set imap_user = {{ imap_username }}
+set imap_pass = {{ imap_password }}
+set folder = imaps://{{ imap_server }}/
+set spoolfile = +INBOX
+set record = "+Sent Items"
+set postponed = +Drafts
+mailboxes +INBOX "+Sent Items" +Drafts +Archive
+set status_format="%m messages (%u unread) - %l"
+set from = {{ email_address }}
+alternates = {{ alternates }}
+set smtp_url="smtps://{{ smtp_username | regex_replace('@', '\@') }}:{{ smtp_password }}@{{ smtp_server }}"
+
+# Shortcut to archive mail:
+macro index A '<save-message>=Archive<enter><enter><sync-mailbox><enter>'
+
+color index brightred black "~N|~O"
+color index brightblack black ~D
+color indicator black red
+
+source $alias_file

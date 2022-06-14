@@ -1,0 +1,36 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - postgresql
+      - postgresql-server-dev-all
+
+- name: Place pg_hba configuration files
+  become: true
+  copy:
+    src: pg_hba.conf
+    dest: /etc/postgresql/{{ item }}/main/
+  notify: restart postgres
+  loop:
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15 # forwards-compatible
+
+- name: Enable daily backups
+  become: true
+  copy:
+    src: daily_backup
+    dest: /etc/cron.daily
+    mode: 0755
+
+- name: Enable monthly backups
+  become: true
+  copy:
+    src: monthly_backup
+    dest: /etc/cron.monthly
+    mode: 0755

@@ -1,0 +1,38 @@
+#!/bin/sh
+# Adapted from http://wcm1.web.rice.edu/mutt-tips.html
+
+MESSAGE=$(cat)
+
+NEWALIAS=$(echo "${MESSAGE}" | grep ^"From: " | sed s/[\,\"\']//g | awk '
+{
+  email = $NF
+  $1 = ""
+  $NF = ""
+  name = $0
+  alias = tolower(name)
+  gsub(/^ +/, "", alias)
+  gsub(/ +$/, "", alias)
+  gsub(/\. +/, "\.", alias)
+  gsub(/ /, "_", alias)
+
+  if (alias) {
+    print "alias", alias, name, email
+  }
+  else {
+    alias = email
+    gsub(/</, "", alias)
+    gsub(/>/, "", alias)
+    print "alias", alias, email
+  }
+}
+' 2> /dev/null)
+
+ALIAS=$(echo "$NEWALIAS" | cut -d' ' -f2)
+
+if ! grep -q "^alias $ALIAS" ~/.mutt/aliases
+then
+    echo "$NEWALIAS" >> ~/.mutt/aliases
+fi
+
+echo "Sender-Alias: $ALIAS"
+echo "${MESSAGE}"

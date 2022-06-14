@@ -1,0 +1,20 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - nginx
+      - ssl-cert
+
+- name: Place nginx configuration file
+  become: true
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
+  notify: reload nginx
+
+- name: Remove default site
+  become: true
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent

@@ -1,0 +1,7 @@
+- name: reload powertop
+  become: true
+  systemd:
+    name: powertop
+    daemon_reload: true
+    enabled: true
+    state: started

@@ -1,0 +1,15 @@
+- name: Fetch public ssh key
+  shell: 'cat ~/.ssh/id_rsa.pub'
+  register: public_key
+  changed_when: false
+
+- name: Allow this host to access all others
+  authorized_key:
+    user: '{{ ansible_user_id }}'
+    state: present
+    key: '{{ public_key.stdout }}'
+  delegate_to: '{{ item }}'
+  loop: '{{ groups.all }}'
+  failed_when: false
+  ignore_unreachable: yes
+  no_log: true

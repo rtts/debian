@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sink=$(pacmd list-sinks | sed -En 's/  \* index: (.)/\1/p')
+increment_by="10%"
+[ "$1" == "up" ] && pactl set-sink-volume "$sink" +"$increment_by"
+[ "$1" == "down" ] && pactl set-sink-volume "$sink" -"$increment_by"
+[ "$1" == "mute" ] && pactl set-sink-mute "$sink" toggle

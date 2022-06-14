@@ -1,0 +1,19 @@
+"brightness up"
+    m:0x0 + c:233
+    XF86MonBrightnessUp 
+
+"brightness down"
+    m:0x0 + c:232
+    XF86MonBrightnessDown 
+
+"volume up"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume 
+
+"volume down"
+    m:0x0 + c:122
+    XF86AudioLowerVolume 
+
+"volume mute"
+    m:0x0 + c:121
+    XF86AudioMute 

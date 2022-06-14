@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+cd /srv
+day=$(date +%A)
+su postgres -c pg_dumpall > "$day.sql"

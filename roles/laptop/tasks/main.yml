@@ -1,0 +1,42 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - powertop
+      - xbattbar
+      - xbindkeys
+
+- name: Install system-wide Xsession
+  become: true
+  copy:
+    src: Xsession.d/
+    dest: /etc/X11/Xsession.d/
+
+- name: Copy dotfiles
+  copy:
+    src: dotfiles/
+    dest: ~/
+
+- name: Install volume and brightness scripts
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin/
+    mode: 0755
+  loop:
+    - volume
+    - brightness
+
+- name: Place xorg.conf configuration snippet
+  become: true
+  copy:
+    src: 10-intel.conf
+    dest: /etc/X11/xorg.conf.d/
+
+- name: Powertop auto tune
+  become: true
+  copy:
+    src: powertop.service
+    dest: /etc/systemd/system/
+  notify: reload powertop

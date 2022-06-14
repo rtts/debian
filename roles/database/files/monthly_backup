@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+cd /srv
+month=$(date +%B)
+su postgres -c pg_dumpall > "$month.sql"

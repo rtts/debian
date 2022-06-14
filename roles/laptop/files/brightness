@@ -1,0 +1,18 @@
+#!/bin/bash
+
+dir=`find /sys/class/backlight/ -type l`
+device=$dir/brightness
+max=`cat $dir/max_brightness`
+stepsize=4
+
+current=`cat $device`
+step=$((current / stepsize))
+if [ $step -eq 0 ]; then step=1; fi
+
+[ $1 == "up"   ] && new=$((current + step))
+[ $1 == "down" ] && new=$((current - step))
+
+if [ $new -lt 1 ]; then new=1; fi
+if [ $new -gt $max ]; then new=$max; fi
+
+echo $new | sudo tee $device
