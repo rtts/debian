@@ -5,23 +5,18 @@
     name:
       - mutt
 
-- name: Create ~/.mutt directory
-  file:
-    path: ~/.mutt
-    state: directory
-
 - name: Place mutt configuration file
   template:
     src: muttrc
-    dest: ~/.mutt/
+    dest: /home/{{ ansible_user_id }}/.mutt/
 
-- name: Create ~/.mutt/aliases file
+- name: Create mutt aliases file
   file:
-    path: ~/.mutt/aliases
+    path: /home/{{ ansible_user_id }}/.mutt/aliases
     state: file
 
 - name: Install add_alias script
   copy:
     src: add_alias
-    dest: ~/.mutt/
+    dest: /home/{{ ansible_user_id }}/.mutt/
     mode: 0755

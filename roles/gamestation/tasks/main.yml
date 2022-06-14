@@ -15,9 +15,8 @@
   pip:
     name: ialauncher
     state: present
-  no_log: true
 
 - name: Copy dotfiles
   copy:
     src: dotfiles/
-    dest: ~/
+    dest: /home/{{ ansible_user_id }}/

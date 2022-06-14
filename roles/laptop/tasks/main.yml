@@ -7,7 +7,7 @@
       - xbattbar
       - xbindkeys
 
-- name: Install system-wide Xsession
+- name: Configure Xsession
   become: true
   copy:
     src: Xsession.d/
@@ -19,11 +19,14 @@
     src: dotfiles/
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
+    force: "{{ item.force }}"
   loop:
-    - dest: ~/
+    - dest: /home/{{ ansible_user_id }}/
       owner: "{{ ansible_user_id }}"
+      force: false
     - dest: /etc/skel/
       owner: root
+      force: true
 
 - name: Install volume and brightness scripts
   become: true

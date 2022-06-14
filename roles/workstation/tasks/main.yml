@@ -29,8 +29,11 @@
     src: dotfiles/
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
+    force: "{{ item.force }}"
   loop:
-    - dest: ~/
+    - dest: /home/{{ ansible_user_id }}/
       owner: "{{ ansible_user_id }}"
+      force: false
     - dest: /etc/skel/
       owner: root
+      force: true

@@ -109,8 +109,9 @@
     src: dotfiles/
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
+    force: true
   loop:
-    - dest: ~/
+    - dest: /home/{{ ansible_user_id }}/
       owner: "{{ ansible_user_id }}"
     - dest: /etc/skel/
       owner: root
