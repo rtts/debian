@@ -1,0 +1,36 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - ack
+      - ansible
+      - apt-file
+      - bc
+      - curl
+      - emacs
+      - jq
+      - liblocal-lib-perl
+      - pwgen
+      - python3-dev
+      - python3-pip
+      - python3-venv
+      - rbenv
+      - texlive-latex-recommended
+      - tidy
+      - unzip
+      - vim
+      - w3m
+      - whois
+
+- name: Copy dotfiles
+  become: true
+  copy:
+    src: dotfiles/
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+  loop:
+    - dest: ~/
+      owner: "{{ ansible_user_id }}"
+    - dest: /etc/skel/
+      owner: root

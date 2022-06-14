@@ -1,0 +1,70 @@
+- name: Install graphical packages
+  become: true
+  apt:
+    state: present
+    name:
+      - ghc
+      - libghc-xmonad-contrib-dev
+      - network-manager-gnome
+      - pavucontrol
+      - pulseaudio
+      - pulseaudio-module-zeroconf
+      - rxvt-unicode
+      - suckless-tools
+      - x11-apps
+      - x11-xserver-utils
+      - xcalib
+      - xclip
+      - xfonts-jmk
+      - xfonts-terminus
+      - xinit
+      - xinput
+      - xmonad
+
+- name: Setup autologin for user {{ ansible_user_id }}
+  become: true
+  template:
+    src: override.conf
+    dest: /etc/systemd/system/getty@tty1.service.d/
+
+- name: Enable bitmap fonts
+  become: true
+  file:
+    path: /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf
+    state: absent
+
+- name: Install system-wide Xsession
+  become: true
+  copy:
+    src: Xsession.d/
+    dest: /etc/X11/Xsession.d/
+
+- name: Install system-wide Xresources
+  become: true
+  copy:
+    src: Xresources/
+    dest: /etc/X11/Xresources/
+
+- name: Install system-wide Bash profile
+  become: true
+  copy:
+    src: profile.d/
+    dest: /etc/profile.d/
+
+- name: Set default terminal emulator to rxvt-unicode
+  become: true
+  alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/urxvt
+
+- name: Copy dotfiles
+  become: true
+  copy:
+    src: dotfiles/
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+  loop:
+    - dest: ~/
+      owner: "{{ ansible_user_id }}"
+    - dest: /etc/skel/
+      owner: root

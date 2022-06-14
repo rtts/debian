@@ -14,9 +14,16 @@
     dest: /etc/X11/Xsession.d/
 
 - name: Copy dotfiles
+  become: true
   copy:
     src: dotfiles/
-    dest: ~/
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+  loop:
+    - dest: ~/
+      owner: "{{ ansible_user_id }}"
+    - dest: /etc/skel/
+      owner: root
 
 - name: Install volume and brightness scripts
   become: true

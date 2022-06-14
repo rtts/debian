@@ -1,7 +1,8 @@
 - name: Fetch public ssh key
-  shell: 'cat ~/.ssh/id_rsa.pub'
+  command: cat ~/.ssh/id_rsa.pub
   register: public_key
   changed_when: false
+  no_log: true
 
 - name: Allow this host to access all others
   authorized_key:
@@ -13,3 +14,9 @@
   failed_when: false
   ignore_unreachable: yes
   no_log: true
+
+- name: Place SSH config file
+  become: true
+  template:
+    src: 10-convenience
+    dest: /etc/ssh/ssh_config.d/

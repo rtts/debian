@@ -1,0 +1,8 @@
+! Leave unset to let X guess the DPI.
+!Xft.dpi: 96
+
+! Leave unset to let X guess the cursor size.
+!Xcursor.size: 16
+
+! This is already the default. Override as needed.
+!URxvt.font: *-terminus-medium-*-*-20-*

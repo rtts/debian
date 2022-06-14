@@ -1,0 +1,4 @@
+CanonicalizeHostname yes
+CanonicalDomains {{ domain_name }} local
+Host *.local
+  ForwardAgent yes

@@ -18,7 +18,7 @@
 - name: Create ~/.mutt/aliases file
   file:
     path: ~/.mutt/aliases
-    state: touch
+    state: file
 
 - name: Install add_alias script
   copy:

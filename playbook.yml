@@ -1,16 +1,18 @@
 #!/usr/bin/env ansible-playbook
 
+# Execute this playbook as `./playbook.yml`
+
 - hosts: all
   roles:
     - role: common
       tags: common
+
+- hosts: webservers
+  roles:
     - role: mailserver
       tags: mailserver
     - role: database
       tags: database
-
-- hosts: webservers
-  roles:
     - role: webserver
       tags: webserver
 
@@ -18,6 +20,8 @@
   roles:
     - role: ssh
       tags: ssh
+    - role: mailserver
+      tags: mailserver
     - role: mailclient
       tags: mailclient
     - role: workstation
@@ -26,6 +30,18 @@
       tags: X
     - role: Xworkstation
       tags: Xworkstation
+
+- hosts: gamestations
+  roles:
+    - role: X
+      tags: X
+    - role: gamestation
+      tags: gamestation
+
+- hosts: kiosks
+  roles:
+    - role: X
+      tags: X
 
 - hosts: laptops
   roles:

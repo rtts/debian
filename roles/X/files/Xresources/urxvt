@@ -1,0 +1,12 @@
+URxvt.font: *-terminus-medium-*-*-20-*
+URxvt.background: rgb:0/0/0
+URxvt.foreground: rgb:b2/b2/b2
+URxvt.color4: rgb:66/66/ff
+URxvt.color7: rgb:b2/b2/b2
+URxvt.color12: rgb:99/99/ff
+URxvt.color15: rgb:b2/b2/b2
+URxvt.scrollBar: False
+URxvt.visualBell: True
+URxvt.perl-ext: default,matcher
+URxvt.url-launcher: /usr/bin/chromium
+URxvt.matcher.Button: 1

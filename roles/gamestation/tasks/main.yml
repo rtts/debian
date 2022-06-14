@@ -1,0 +1,23 @@
+- name: Install packages
+  become: true
+  apt:
+    state: present
+    name:
+      - dosbox
+
+- name: Force 640x480 resolution
+  become: true
+  copy:
+    src: 10-intel.conf
+    dest: /etc/X11/xorg.conf.d/
+
+- name: Install IA Launcher
+  pip:
+    name: ialauncher
+    state: present
+  no_log: true
+
+- name: Copy dotfiles
+  copy:
+    src: dotfiles/
+    dest: ~/

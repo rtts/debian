@@ -1,0 +1,36 @@
+- name: Install graphical packages
+  become: true
+  apt:
+    state: present
+    name:
+      - chromium
+      - eog
+      - evince
+      - file-roller
+      - filelight
+      - firefox
+      - gimp
+      - inkscape
+      - keepassx
+      - libreoffice
+      - mpv
+      - pdfarranger
+      - thunar
+      - transmission-gtk
+      - trayer
+      - webext-ublock-origin
+      - xautolock
+      - xss-lock
+      - xtrlock
+
+- name: Copy dotfiles
+  become: true
+  copy:
+    src: dotfiles/
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+  loop:
+    - dest: ~/
+      owner: "{{ ansible_user_id }}"
+    - dest: /etc/skel/
+      owner: root

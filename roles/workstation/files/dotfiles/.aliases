@@ -1,0 +1,25 @@
+# SSH Agent
+ssh-add -l > /dev/null || ssh-add
+
+# Emacs
+unalias e 2> /dev/null
+e() { (emacsclient -n "$@" 2> /dev/null) || ([[ -n "$DISPLAY" ]] && (emacs "$@" &)) || emacs -nw "$@"; }
+
+# Python
+workon() { . ~/.virtualenvs/$1/bin/activate; }
+mkvirtualenv() { [[ -n $1 ]] && python3 -m venv ~/.virtualenvs/$1 && workon $1; }
+rmvirtualenv() { [[ -n $1 ]] && rm -r ~/.virtualenvs/$1; }
+alias cv='pushd $VIRTUAL_ENV/lib/python*/site-packages'
+alias run='workon $(basename $(pwd)); ./manage.py runserver'
+
+# Perl
+eval $(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=~/.perl5)
+
+# Ruby
+eval "$(rbenv init -)"
+
+# Make less understand pdf, tar, gif, etc.
+eval "$(lesspipe)"
+
+# When you're bored
+alias n='w3m news.ycombinator.com'

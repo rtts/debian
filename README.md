@@ -241,29 +241,30 @@ his death.
 
 ### Photography
 
-After a photo shoot I like to use `geeqie` (`apt install geeqie`) to
-cull the photos I've taken, then use `darktable` (`apt install
-darktable`) to post-process them. Finally, I use `photog` (`pip
-install photog`) to generate [my photography
-website](https://www.superformosa.nl/). Of course, GIMP and Inkscape
-cannot be missing in any designer's toolbox and are therefore already
-installed by the `Xworkstation` role.
+After a photo shoot I like to use [Geeqie](https://www.geeqie.org/)
+(`apt install geeqie`) to cull the photos I've taken, then use
+[darktable](https://www.darktable.org/) (`apt install darktable`)
+to post-process them. Finally, I use
+[Photog!](https://pypi.org/project/photog/) (`pip install photog`)
+to generate [my photography website](https://www.superformosa.nl/).
+Of course, GIMP and Inkscape cannot be missing in any designer's
+toolbox and are therefore already installed by the `Xworkstation`
+role.
 
 ### Audio recording
 
-I use Audacity (`apt install audacity`) to record high-quality audio
-using a Focusrite Scarlet 2i2, which works phenomenally well under
-Linux and PulseAudio. All I needed to do was plug the device in and
-attach speakers, and all audio was routed correctly by default.
+I use [Audacity](https://www.audacityteam.org/) (`apt install
+audacity`) to record high-quality audio using a Focusrite Scarlet 2i2,
+which works phenomenally well under Linux and PulseAudio. All I needed
+to do was plug the device in and attach speakers, and all audio was
+routed correctly by default.
 
 ### Programming
 
 The terminal-first computing environment configured by this playbook
 naturally lends itself well to all kinds of programming. Recommended
 languages to get started are Bash, Python, Perl, Ruby, Haskell (I dare
-you to edit the `xmonad` configuration file!), or PHP. Make sure to
-`apt install emacs` or `apt install vim` and learn C if you want to
-become a true Unix hacker!
+you to edit the `xmonad` configuration file!), or PHP.
 
 ### Entertainment
 
@@ -271,17 +272,20 @@ I love [mpv](https://mpv.io/) so much it's included in the
 `Xworkstation` role by default. Read `man mpv` to find out all the
 available options of this grand successor to `mplayer`. Unfortunately,
 it is currently not easy to legally acquire stuff to play with `mpv`,
-so you're almost forced to resort to semi-legal options like
-`youtube-dl` (`apt install youtube-dl`) or illegal options like Yify.
-Netflix runs fine however using Firefox after enabling DRM (not in
-Chromium, because it lacks the required Widevine DRM).
+unless you resort to semi-legal options like `youtube-dl` (`apt
+install youtube-dl`) or illegal options like Yify. Netflix runs in
+Firefox after
+[enabling DRM](https://support.mozilla.org/en-US/kb/enable-drm) but
+not in Chromium, because it lacks the required Widevine DRM. Please
+[fight for alternatives to DRM](https://www.defectivebydesign.org/)!
 
 ### Gaming
 
-If you're a gamer, you probably want to install the Steam Client even
-though it's not open source. Personally I like playing titles that are
-available on the Internet Archive, using my own [custom games launcher
-for DOSBox](https://ialauncher.created.today/) that will automatically
+If you're a gamer, you probably want to install the [Steam
+Client](https://store.steampowered.com/about/) even though it's not
+open source. Personally I like playing titles that are available on
+the Internet Archive, using my own [custom games launcher for
+DOSBox](https://ialauncher.created.today/) that will automatically
 download and run a large number of MS-DOS games. Here's how to install
 and run it:
 
@@ -290,12 +294,17 @@ and run it:
     $ ialauncher --no-fullscreen
 
 The `--no-fullscreen` argument is there because `xmonad` will already
-tile the IA Launcher window to be fullscreen.
+tile the IA Launcher window to be fullscreen. Alternatively, you can
+add your computer to the `gamestations` group to configure it to run
+IA Launcher as its windows manager, but that is not recommended unless
+you plan to use the computer for nothing else but retro gaming. (I've
+used this in the past to exhibit games in a public library, the kids
+loved it!)
 
 ## Maintenance
 
 Like any operating system, Debian publishes regular updates. I've made it
-a habit to run the following commands every week:
+a habit to run the following commands regularly:
 
     $ sudo apt update
     $ sudo apt upgrade

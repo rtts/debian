@@ -28,6 +28,7 @@
     state: present
     name:
       - bash-completion
+      - build-essential
       - figlet
       - git
       - joe
@@ -102,7 +103,14 @@
     src: inputrc
     dest: /etc/
 
-- name: Copy dotfiles (it’s only .bashrc)
+- name: Copy dotfiles
+  become: true
   copy:
     src: dotfiles/
-    dest: "~"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+  loop:
+    - dest: ~/
+      owner: "{{ ansible_user_id }}"
+    - dest: /etc/skel/
+      owner: root
