@@ -342,10 +342,10 @@ and run it:
 The `--no-fullscreen` argument is there because `xmonad` will already
 tile the IA Launcher window to be fullscreen. Alternatively, you can
 add your computer to the `gamestations` group to configure it to run
-IA Launcher as its windows manager, but that is not recommended unless
+IA Launcher as a window manager, but that is not recommended unless
 you plan to use the computer for nothing else but retro gaming. (I've
-used this in the past to exhibit games in a public library, the kids
-loved it!)
+used this role to exhibit games in a public library, the guests loved
+it!)
 
 ## Maintenance
 
