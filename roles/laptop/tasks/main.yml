@@ -3,7 +3,6 @@
   apt:
     state: present
     name:
-      - powertop
       - xbattbar
       - xbindkeys
 
@@ -43,10 +42,3 @@
   copy:
     src: 10-intel.conf
     dest: /etc/X11/xorg.conf.d/
-
-- name: Powertop auto tune
-  become: true
-  copy:
-    src: powertop.service
-    dest: /etc/systemd/system/
-  notify: reload powertop
