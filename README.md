@@ -147,9 +147,9 @@ that is in your physical possesion, such as a laptop or a desktop
 computer. Open the file `inventory.ini` and add your hostname to the
 `[workstations]` section and, if it's a laptop, to the `[laptops]`
 section. If you want the system to be able to send and receive email,
-please provide your email credentials in `group_vars/all.yml`. I
-highly recommend [Fastmail](https://www.fastmail.com/) as an email
-provider.
+please also provide your email credentials (optional). I highly recommend
+[Fastmail](https://www.fastmail.com/) as an email provider using their
+[app passwords](https://www.fastmail.help/hc/en-us/articles/360058752854-App-passwords).
 
 Now run the playbook!
 
