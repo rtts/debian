@@ -11,6 +11,8 @@
   copy:
     src: pg_hba.conf
     dest: /etc/postgresql/{{ item }}/main/
+    owner: postgres
+    mode: 0640
   notify: restart postgres
   loop:
     - 9
