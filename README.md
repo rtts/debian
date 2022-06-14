@@ -66,13 +66,32 @@ that you arrive at the following screen:
 
 Hurrah! The hardest part – getting your computer to successfully boot
 from a USB stick – is over! Note that the screenshot says "BIOS mode",
-but if you manage to boot the installer in "UEFI mode" that is
-probably even better. The second hardest part is choosing a hostname
-for the new system. Get some inspiration for great names at
-https://namingschemes.com/. Carefully follow the installation
-instructions and choose the partitioning method "Use entire disk and
-set up encrypted LVM" for maximum security. At the end of the
-installation you'll see this:
+but if you manage to boot the "UEFI Installer menu" that is probably
+even better. The second hardest part is choosing a hostname for the
+new system. Get your inspiration at https://namingschemes.com/.
+Carefully follow the installation instructions and choose the
+partitioning method "Use entire disk and set up encrypted LVM" for
+maximum security.
+
+> **Note**
+>
+> Even when you have configured a WiFi connection during the
+> installation, the resulting system will not have WiFi. This is a bug
+> in the Debian installer. To work around it, switch to a VT during
+> the installation (`Ctrl-Alt-F2`), activate the console and copy the
+> network configuration to the target system with the following
+> command:
+>
+>     # cp /etc/network/interfaces /target/etc/network/interfaces
+>
+> It should contain something like the following:
+>
+>     allow-hotplug wlp3s0
+>     iface wlp3s0 inet dhcp
+>         wpa-ssid <YOUR_SSID>
+>         wpa-psk  <YOUR_PASSWORD>
+
+At the end of the installation you'll see this:
 
 ![Tasksel](https://raw.githubusercontent.com/rtts/debian/main/doc/tasksel.png)
 
@@ -181,6 +200,16 @@ single terminal is automatically launched at startup, because I like
 it that way, but you can easily specify another program to launch by
 editing the `.xsession` file in your home directory. Also have look at
 the other dotfiles that were placed there by the playbook.
+
+> **Note**
+>
+> All dotfiles (except `.bashrc`) are placed with the
+> [force](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html#parameter-force)
+> parameter set to `false`, which means that your local changes will
+> not be overwritten when you re-run the playbook. The dotfiles are
+> also written to the `/etc/skel` directory, so they will be installed
+> for new users created by `adduser`. This is also a convenient
+> location to check for updates to dotfiles.
 
 Here are the most important keyboard shortcuts you need to know:
 
