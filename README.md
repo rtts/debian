@@ -314,16 +314,17 @@ you to edit the `xmonad` configuration file!), or PHP.
 
 ### Entertainment
 
-I love [mpv](https://mpv.io/) so much it's included in the
-`Xworkstation` role by default. Read `man mpv` to find out all the
-available options of this grand successor to `mplayer`. Unfortunately,
-it is currently not easy to legally acquire stuff to play with `mpv`,
-unless you resort to semi-legal options like `youtube-dl` (`apt
-install youtube-dl`) or illegal options like Yify. Netflix runs in
-Firefox after
-[enabling DRM](https://support.mozilla.org/en-US/kb/enable-drm) but
-not in Chromium, because it lacks the required Widevine DRM. Please
-[fight for alternatives to DRM](https://www.defectivebydesign.org/)!
+I love [mpv](https://mpv.io/) so much it's included in the `X` role by
+default. Read `man mpv` to find out all the available options of this
+grand successor to `mplayer`. Unfortunately, it is currently not easy
+to legally acquire stuff to play with `mpv`, unless you resort to
+semi-legal options like
+[youtube-dl](http://ytdl-org.github.io/youtube-dl/)(`apt install
+youtube-dl`) or illegal options like Yify. Netflix runs in Firefox
+after [enabling DRM](https://support.mozilla.org/en-US/kb/enable-drm)
+but not in Chromium, because it lacks the required Widevine DRM.
+Please [fight for alternatives to
+DRM](https://www.defectivebydesign.org/).
 
 ### Gaming
 
