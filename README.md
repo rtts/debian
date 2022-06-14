@@ -193,6 +193,7 @@ Here are the most important keyboard shortcuts you need to know:
   desktop.
 - `Windows - Space` switches between fullscreen and tiled window
   layouts.
+- `Windows - Enter` moves a window to the top of the window stack.
 - When in tiled layout, `Windows - ,` and `Windows - .` do something
   that's hard to explain, but is usually exactly what you need.
 - To change the size of tiled windows, `Windows - H` and `Windows -
@@ -200,6 +201,8 @@ Here are the most important keyboard shortcuts you need to know:
   and drag it using the right mouse button.
 - Dragging a window while holding the `Windows` key will make it
   floating. You can make it tiled again with `Windows - T`.
+
+You can view all available keybindings with `Windows - Shift - /`.
 
 ## More possibilities
 
