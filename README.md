@@ -174,7 +174,7 @@ Now run the playbook!
 
     $ ./playbook.yml
 
-## Using the new system
+## Using the system
 
 Congratulations! Your system has been fully set up for general use,
 with a number of useful software packages installed and thousands more
@@ -187,8 +187,9 @@ message of the day:
 ![Message of the day](https://raw.githubusercontent.com/rtts/debian/main/doc/motd.png)
 
 This message is shown in the blazingly fast terminal emulator
-`rxvt-unicode` displayed by the tiling window manager `xmonad`. A
-single terminal is automatically launched at startup, because I like
+[rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
+displayed by the tiling window manager [xmonad](https://xmonad.org/).
+A single terminal is automatically launched at startup, because I like
 it that way, but you can easily specify another program to launch by
 editing the `.xsession` file in your home directory. Also have look at
 the other dotfiles that were placed there by the playbook.
@@ -235,15 +236,19 @@ this setup.
 The playbook has installed the web browsers Chromium and Firefox.
 Personally, I like to edit `/etc/chromium.d/default-flags` to add the
 `--incognito` flag so that Chromium will always browse incognito, and
-then use Firefox for all my non-incognito browsing. Both browsers
-include uBlock Origin through the `webext-ublock-origin` Debian
-package. I have also heard good things about the
+then use Firefox for all my non-incognito browsing.
+
+Both browsers include uBlock Origin through the `webext-ublock-origin`
+Debian package. I have also heard good things about the
 [Firefox Multi-Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
-extension so you might want to give that a try. Also I highly
-recommend setting your default search engine to DuckDuckGo so you have
-access to their incredible [Bang syntax](https://duckduckgo.com/bang)
-when doing searches. In practice, however, most of my web searches
-still use the `!g` bang to search Google.
+extension so you might want to give that a try. The recently introduced
+[Total Cookie Protection](https://blog.mozilla.org/en/products/firefox/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/)
+sounds very promising.
+
+Finally, I highly recommend setting your default search engine to
+DuckDuckGo so you have access to their incredible [Bang
+syntax](https://duckduckgo.com/bang). In practice, however, most of my
+web searches still use the `!g` bang to search Google.
 
 ### Email
 
