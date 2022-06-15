@@ -1,4 +1,4 @@
-- name: Install packages
+- name: Install laptop packages
   become: true
   apt:
     state: present
@@ -6,13 +6,29 @@
       - xbattbar
       - xbindkeys
 
-- name: Configure Xsession
+- name: Xsession trackpad, battery bar, multimedia keys
   become: true
   copy:
     src: Xsession.d/
     dest: /etc/X11/Xsession.d/
 
-- name: Copy dotfiles
+- name: Volume and brightness
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin/
+    mode: 0755
+  loop:
+    - volume
+    - brightness
+
+- name: Fix screen tearing on Intel
+  become: true
+  copy:
+    src: 10-intel.conf
+    dest: /etc/X11/xorg.conf.d/
+
+- name: Copy laptop dotfiles
   become: true
   copy:
     src: dotfiles/
@@ -26,19 +42,3 @@
     - dest: /etc/skel/
       owner: root
       force: true
-
-- name: Install volume and brightness scripts
-  become: true
-  copy:
-    src: "{{ item }}"
-    dest: /usr/local/bin/
-    mode: 0755
-  loop:
-    - volume
-    - brightness
-
-- name: Place xorg.conf configuration snippet
-  become: true
-  copy:
-    src: 10-intel.conf
-    dest: /etc/X11/xorg.conf.d/

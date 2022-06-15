@@ -1,4 +1,5 @@
-if [[ ! $0 =~ - ]]; then /etc/update-motd.d/20-stats; fi
+# Show message of the day in every terminal
+if [[ ! $0 == -* ]]; then /etc/update-motd.d/20-stats; fi
 
 alias eog='eog --fullscreen'
 alias xclip='xclip -selection clipboard'

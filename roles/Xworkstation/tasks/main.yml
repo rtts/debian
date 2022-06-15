@@ -1,4 +1,4 @@
-- name: Install graphical packages
+- name: Install graphical workstation packages
   become: true
   apt:
     state: present
@@ -10,7 +10,7 @@
       - xss-lock
       - xtrlock
 
-- name: Place Xsession configuration files
+- name: Xsession autolock
   become: true
   copy:
     src: Xsession.d/

@@ -1,9 +1,8 @@
-- name: Install packages
+- name: Install mutt
   become: true
   apt:
     state: present
-    name:
-      - mutt
+    name: mutt
 
 - name: Place mutt configuration file
   template:
@@ -15,7 +14,7 @@
     path: /home/{{ ansible_user_id }}/.mutt/aliases
     state: file
 
-- name: Install add_alias script
+- name: Automatically populate aliases
   copy:
     src: add_alias
     dest: /home/{{ ansible_user_id }}/.mutt/

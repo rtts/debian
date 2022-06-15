@@ -7,13 +7,10 @@
       - eog
       - evince
       - file-roller
-      - filelight
-      - firefox-esr
       - ghc
       - libghc-xmonad-contrib-dev
       - mpv
       - network-manager-gnome
-      - paprefs
       - pavucontrol
       - pulseaudio
       - pulseaudio-module-zeroconf
@@ -26,11 +23,25 @@
       - x11-xserver-utils
       - xcalib
       - xclip
-      - xfonts-jmk
       - xfonts-terminus
       - xinit
       - xinput
       - xmonad
+
+- block:
+    - name: Install Firefox
+      become: true
+      apt:
+        state: present
+        name:
+          - firefox
+  rescue:
+    - name: Install Firefox ESR instead
+      become: true
+      apt:
+        state: present
+        name:
+          - firefox-esr
 
 - name: Setup autologin for user {{ ansible_user_id }}
   become: true
@@ -44,19 +55,19 @@
     path: /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf
     state: absent
 
-- name: Configure Xsession
+- name: Xsession root background, root cursor, disable blanking
   become: true
   copy:
     src: Xsession.d/
     dest: /etc/X11/Xsession.d/
 
-- name: Configure Xresources
+- name: Xresources for fonts, colors, and LCD hinting
   become: true
   copy:
     src: Xresources/
     dest: /etc/X11/Xresources/
 
-- name: Configure Bash profile
+- name: Bash profile to automatically start X
   become: true
   copy:
     src: profile.d/
@@ -68,7 +79,13 @@
     name: x-terminal-emulator
     path: /usr/bin/urxvt
 
-- name: Copy dotfiles
+- name: PulseAudio Zeroconf
+  become: true
+  lineinfile:
+    dest: /etc/pulse/default.pa
+    line: load-module module-zeroconf-discover
+
+- name: Copy graphical dotfiles
   become: true
   copy:
     src: dotfiles/

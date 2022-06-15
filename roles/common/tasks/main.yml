@@ -22,7 +22,7 @@
   timezone:
     name: Europe/Amsterdam
 
-- name: Install packages
+- name: Install common packages
   become: true
   apt:
     state: present
@@ -87,7 +87,7 @@
     state: absent
   loop: '{{ found_files["files"] | map(attribute="path") + ["/etc/motd"] }}'
 
-- name: Install custom message-of-the-day
+- name: Custom message-of-the-day
   become: true
   copy:
     src: '{{ item }}'
@@ -97,7 +97,7 @@
     - 20-stats
     - 30-packages
 
-- name: Configure readline completion
+- name: GNU Readline completion
   become: true
   copy:
     src: inputrc

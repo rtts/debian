@@ -1,9 +1,8 @@
-- name: Install packages
+- name: Install DOSBox
   become: true
   apt:
     state: present
-    name:
-      - dosbox
+    name: dosbox
 
 - name: Force 640x480 resolution
   become: true
@@ -16,7 +15,7 @@
     name: ialauncher
     state: present
 
-- name: Copy dotfiles
+- name: Use IA Launcher as window manager
   copy:
     src: dotfiles/
     dest: /home/{{ ansible_user_id }}/

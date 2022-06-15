@@ -7,7 +7,6 @@ myManageHook = composeAll
   [ className =? "Gimp" --> doFloat
   , className =? "Clock" --> doIgnore
   , className =? "trayer" --> doIgnore
-  , className =? "mednafen" --> doIgnore
   ]
 
 myLayout = full ||| tiled

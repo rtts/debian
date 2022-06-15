@@ -1,4 +1,4 @@
-- name: Install packages
+- name: Install database packages
   become: true
   apt:
     state: present
@@ -6,7 +6,7 @@
       - postgresql
       - postgresql-server-dev-all
 
-- name: Place pg_hba configuration files
+- name: Passwordless access for users on localhost
   become: true
   copy:
     src: pg_hba.conf
@@ -23,14 +23,14 @@
     - 14
     - 15 # forwards-compatible
 
-- name: Enable daily backups
+- name: Daily database backups
   become: true
   copy:
     src: daily_backup
     dest: /etc/cron.daily
     mode: 0755
 
-- name: Enable monthly backups
+- name: Monthly database backups
   become: true
   copy:
     src: monthly_backup

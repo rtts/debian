@@ -1,4 +1,4 @@
-- name: Install packages
+- name: Install webserver packages
   become: true
   apt:
     state: present

@@ -1,4 +1,4 @@
-- name: Install packages
+- name: Install workstation packages
   become: true
   apt:
     state: present
@@ -23,7 +23,7 @@
       - w3m
       - whois
 
-- name: Copy dotfiles
+- name: Copy workstation dotfiles
   become: true
   copy:
     src: dotfiles/

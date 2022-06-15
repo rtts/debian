@@ -15,8 +15,9 @@
   ignore_unreachable: yes
   no_log: true
 
-- name: Place SSH config file
+- name: Canonicalize hostnames and forward agent
   become: true
   template:
     src: 10-convenience
     dest: /etc/ssh/ssh_config.d/
+  when: domain_name

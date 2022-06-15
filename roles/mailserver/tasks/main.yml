@@ -2,8 +2,7 @@
   become: true
   apt:
     state: present
-    name:
-      - exim4
+    name: exim4
 
 - name: Set mailname
   become: true
@@ -27,7 +26,7 @@
     dest: /etc/exim4/passwd.client
   when: smtp_server and smtp_username and smtp_password
 
-- name: Configure email forwarding
+- name: Forward all system mail to {{ email_address }}
   become: true
   lineinfile:
     path: /etc/aliases
