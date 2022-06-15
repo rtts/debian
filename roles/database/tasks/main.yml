@@ -6,7 +6,7 @@
       - postgresql
       - postgresql-server-dev-all
 
-- name: Passwordless access for users on localhost
+- name: Passwordless database access for local users
   become: true
   copy:
     src: pg_hba.conf
