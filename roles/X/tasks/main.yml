@@ -49,6 +49,12 @@
     src: override.conf
     dest: /etc/systemd/system/getty@tty1.service.d/
 
+- name: Fix screen tearing on Intel
+  become: true
+  copy:
+    src: 10-intel.conf
+    dest: /etc/X11/xorg.conf.d/
+
 - name: Enable bitmap fonts
   become: true
   file:

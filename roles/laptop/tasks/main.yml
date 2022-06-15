@@ -22,12 +22,6 @@
     - volume
     - brightness
 
-- name: Fix screen tearing on Intel
-  become: true
-  copy:
-    src: 10-intel.conf
-    dest: /etc/X11/xorg.conf.d/
-
 - name: Copy laptop dotfiles
   become: true
   copy:
