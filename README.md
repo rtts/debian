@@ -253,7 +253,8 @@ Email configuration is split up into two roles:
 2. `mailclient`
 
 The `mailserver` role configures Exim4 to send all outgoing emails
-through a smarthost of your choosing, solving the mystery of XKCD 838:
+through a smarthost of your choosing, solving the mystery of [xkcd
+838](https://xkcd.com/838/):
 
 ![XKCD 838](https://imgs.xkcd.com/comics/incident.png)
 
