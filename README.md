@@ -8,8 +8,8 @@ computer. This repository contains the exact configuration of all my
 workstations, gaming computers, laptops and even a couple of VPSes. Of
 course, your situation will differ, but I believe the installation
 instructions and Ansible roles contained herein will be a great
-starting point for anyone who wants to enjoy using their computer to
-its maximum potential.**
+starting point for anyone who wants to enjoy using a minimalist setup
+to its maximum potential.**
 
 ## FAQ
 
@@ -182,17 +182,9 @@ just one `apt install` away. Let me guide you to how to use this setup
 and how to customize it to your wishes.
 
 After the system boots, you will be greeted with the following
-message-of-the-day:
+message of the day:
 
-       ___      __   _         
-      / _ \___ / /  (_)__ ____ 
-     / // / -_) _ \/ / _ `/ _ \
-    /____/\__/_.__/_/\_,_/_//_/
-
-    Memory: 119/974MB (12%)
-    Disk /: 1/4GB (36%)
-    Load average: 0.22 0.08 0.02
-    jj@debian:~$ 
+![Message of the day](https://raw.githubusercontent.com/rtts/debian/main/doc/motd.png)
 
 This message is shown in the blazingly fast terminal emulator
 `rxvt-unicode` displayed by the tiling window manager `xmonad`. A
@@ -203,7 +195,7 @@ the other dotfiles that were placed there by the playbook.
 
 > **Note**
 >
-> All dotfiles (except `.bashrc`) are placed with the
+> All dotfiles (except `.bashrc`) are placed by Ansible with the
 > [force](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html#parameter-force)
 > parameter set to `false`, which means that your local changes will
 > not be overwritten when you re-run the playbook. The dotfiles are
