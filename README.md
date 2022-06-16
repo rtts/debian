@@ -278,15 +278,16 @@ usage all you need is the arrow keys and the following shortcuts:
 ### Lego CAD
 
 I use [LDCad](http://www.melkert.net/LDCad) to create building
-instructions for [my Lego models](https://jj.created.today/). It's the
-only piece of non-open source software on my computer, but I've
-emailed the author and he assured me he would open source it before
-his death.
+instructions for [my Lego models](https://jj.created.today/). It's
+closed-source, but I've emailed the author and he's assured me he
+would open source it before his death. You can also install `leocad`
+and `ldraw-parts` from the Debian repositories. For more information
+visit [LDraw.org](https://ldraw.org/).
 
 ### Photography
 
-After a photo shoot I like to use [Geeqie](https://www.geeqie.org/)
-(`apt install geeqie`) to cull the photos I've taken, then use
+As a photographer I like to use [Geeqie](https://www.geeqie.org/)
+(`apt install geeqie`) to cull the photos after a shoot, then use
 [darktable](https://www.darktable.org/) (`apt install darktable`)
 to post-process them. Finally, I use
 [Photog!](https://pypi.org/project/photog/) (`pip install photog`)
