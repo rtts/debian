@@ -317,7 +317,7 @@ default. Read `man mpv` to find out all the available options of this
 grand successor to `mplayer`. Unfortunately, it is currently not easy
 to legally acquire stuff to play with `mpv`, unless you resort to
 semi-legal options like
-[youtube-dl](http://ytdl-org.github.io/youtube-dl/)(`apt install
+[youtube-dl](http://ytdl-org.github.io/youtube-dl/) (`apt install
 youtube-dl`) or illegal options like Yify. Netflix runs in Firefox
 after [enabling DRM](https://support.mozilla.org/en-US/kb/enable-drm)
 but not in Chromium, because it lacks the required Widevine DRM.
@@ -376,7 +376,7 @@ a habit to run the following commands regularly:
     $ sudo apt upgrade
 
 Also, because I like bleeding-edge software, I've edited
-`/etc/apt/source.list` to contain the following:
+`/etc/apt/sources.list` to contain the following:
 
     deb http://ftp.nl.debian.org/debian/ sid main non-free contrib
     deb-src http://ftp.nl.debian.org/debian/ sid main non-free contrib
