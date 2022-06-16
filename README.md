@@ -346,6 +346,27 @@ you plan to use the computer for nothing else but retro gaming. (I've
 used this role to exhibit games in a public library, the guests loved
 it!)
 
+### Work
+
+My work requires me to use the closed-source
+[Slack](https://slack.com/downloads/linux) and
+[Teams](https://www.microsoft.com/en-us/microsoft-teams/download-app)
+clients. After downloading the `.deb` files, install them with `dpkg`:
+
+    $ sudo dpkg -i slack-desktop-*-amd64.deb
+    $ sudo dpkg -i teams_*_amd64.deb
+
+They both work fine, although for Slack I had to set Preferences →
+Advanced → Disable hardware acceleration to stop the app from crashing
+during video calls.
+
+It's possible to [configure mutt to connect to an Exchange
+server](https://jonathanh.co.uk/blog/mutt-setup/#connecting-to-exchange---davmail),
+but according to the linked blog:
+
+> get yourself a beer, this will probably take a couple of hours to
+> set up
+
 ## Maintenance
 
 Like any operating system, Debian publishes regular updates. I've made it
