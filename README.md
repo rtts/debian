@@ -349,7 +349,17 @@ it!)
 
 ### Work
 
-My work requires me to use the closed-source
+To satisfy my employer's ISO 27001 requirement, the screens of all
+workstations are set to lock after 5 minutes of inactivity. To
+accomplish this, I used `xautolock` which is officially hosted by [one
+of the first web sites on the
+internet](https://en.wikipedia.org/wiki/Ibiblio#History):
+`http://sunsite.unc.edu/pub/Linux/X11/screensavers/`. To get rid of
+the auto-locking behavior, remove the file
+`/etc/X11/Xsession.d/90custom_autolock` and restart X with `Windows`
+`Shift` `Q`.
+
+My work also requires me to use the closed-source
 [Slack](https://slack.com/downloads/linux) and
 [Teams](https://www.microsoft.com/en-us/microsoft-teams/download-app)
 clients. After downloading the `.deb` files, install them with `dpkg`:
