@@ -206,25 +206,25 @@ the other dotfiles that were placed there by the playbook.
 
 Here are the most important keyboard shortcuts you need to know:
 
-- `Windows - Shift - Enter` opens a new terminal.
-- `Windows - [1-9]` switches to the virtual desktop 1 through 9.
-- `Windows - P` launches `dmenu`. Type the starting letters of a
+- `Windows` `Shift` `Enter` opens a new terminal.
+- `Windows` `[1-9]` switches to the virtual desktop 1 through 9.
+- `Windows` `P` launches `dmenu`. Type the starting letters of a
   graphical program, such as `chromium` or `firefox` and press Enter
   to launch it.
-- `Windows - Tab` cycles between the windows on the current virtual
+- `Windows` `Tab` cycles between the windows on the current virtual
   desktop.
-- `Windows - Space` switches between fullscreen and tiled window
+- `Windows` `Space` switches between fullscreen and tiled window
   layouts.
-- `Windows - Enter` moves a window to the top of the window stack.
-- When in tiled layout, `Windows - ,` and `Windows - .` do something
+- `Windows` `Enter` moves a window to the top of the window stack.
+- When in tiled layout, `Windows` `,` and `Windows` `.` do something
   that's hard to explain, but is usually exactly what you need.
-- To change the size of tiled windows, `Windows - H` and `Windows -
-  L`. You can also change the size of any window by holding `Windows`
+- To change the size of tiled windows, `Windows` `H` and `Windows` `L`
+  You can also change the size of any window by holding `Windows`
   and drag it using the right mouse button.
 - Dragging a window while holding the `Windows` key will make it
-  floating. You can make it tiled again with `Windows - T`.
+  floating. You can make it tiled again with `Windows` `T`.
 
-You can view all available keybindings with `Windows - Shift - /`.
+You can view all available keybindings with `Windows` `Shift` `/`.
 
 ## More possibilities
 
