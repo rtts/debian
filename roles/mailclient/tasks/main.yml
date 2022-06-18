@@ -10,9 +10,10 @@
     dest: /home/{{ ansible_user_id }}/.mutt/
 
 - name: Create mutt aliases file
-  file:
-    path: /home/{{ ansible_user_id }}/.mutt/aliases
-    state: file
+  copy:
+    content: ""
+    dest: /home/{{ ansible_user_id }}/.mutt/aliases
+    force: no
 
 - name: Automatically populate aliases
   copy:
