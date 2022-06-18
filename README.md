@@ -69,9 +69,15 @@ from a USB stick – is over! Note that the screenshot says "BIOS mode",
 but if you manage to boot the "UEFI Installer menu" that is probably
 even better. The second hardest part is choosing a hostname for the
 new system. Get your inspiration at https://namingschemes.com/.
+
 Carefully follow the installation instructions and choose the
 partitioning method "Use entire disk and set up encrypted LVM" for
-maximum security.
+maximum security. At the "Set up users and passwords" prompt, supply
+an empty password for the root user and create an initial user
+account. This account will be given the power to become root using the
+`sudo` command. One day, I will add a [Debian
+Preseed](https://wiki.debian.org/DebianInstaller/Preseed) to this
+repository which will make all this happen automatically.
 
 > **Note**
 >
