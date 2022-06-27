@@ -40,8 +40,8 @@ broadcast address (the broadcast address of the network where the
 computer resides or the limited broadcast address). Default:
 255.255.255.255 (the limited broadcast address).
 
-Now running `wakeonlan <MAC_ADDRESS>` it should work, but only once.
-To persist the `g` and `b` settings, you will have to re-enable it on
+Now running `wakeonlan <MAC_ADDRESS>` should work, but only once. To
+persist the `g` and `b` settings, you will have to re-enable it on
 every boot. In the old days, you could simply add the `ethtool`
 command to `/etc/rc.local` but nowadays even a single command like
 this needs their own standalone systemd service configuration:
