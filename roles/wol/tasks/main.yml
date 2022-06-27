@@ -1,0 +1,5 @@
+- name: Enable Wake-on-LAN
+  become: true
+  copy:
+    src: override.conf
+    dest: /etc/systemd/network/99-default.link.d/

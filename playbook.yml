@@ -47,3 +47,8 @@
   roles:
     - role: laptop
       tags: laptop
+
+- hosts: wol
+  roles:
+    - role: wol
+      tags: wol
