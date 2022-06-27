@@ -26,22 +26,22 @@ Linux source code, alongside forgotten beauties such as
 > things that could get you in trouble.
 
 Next, you need to run `ethtool` to toggle the `wol` capability of your
-network card to `g`, which is the single-letter abbreviation of the
-term "magic packet", because that also contains the letter `g`. Are
-you still following this? Here is the command to do so:
+network card to option `g`, which is the single-letter abbreviation of
+the term "magic packet", because that also contains the letter `g`.
+Are you still following this? Here is the command to do so:
 
-   # ethtool -s <interface> wol g
+    # ethtool -s <interface> wol g
 
-However, this will not work without *also* enabling `b`, for Broadcast
-activity. From `man wakeonlan`:
+However, this will not work without *also* enabling option `b`, for
+Broadcast activity. From `man wakeonlan`:
 
 > Unless you have static ARP tables you should use some kind of
 broadcast address (the broadcast address of the network where the
 computer resides or the limited broadcast address). Default:
 255.255.255.255 (the limited broadcast address).
 
-Now running `wakeonlan <MAC_ADDRESS>` it will work, but only once. To
-persist the `g` and `b` settings, you will have to re-enable it on
+Now running `wakeonlan <MAC_ADDRESS>` it should work, but only once.
+To persist the `g` and `b` settings, you will have to re-enable it on
 every boot. In the old days, you could simply add the `ethtool`
 command to `/etc/rc.local` but nowadays even a single command like
 this needs their own standalone systemd service configuration:
