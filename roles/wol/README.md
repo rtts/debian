@@ -25,15 +25,34 @@ Linux kernel, alongside forgotten beauties such as
 > oppressive industry cartels, Web site witch hunts, or any other bad
 > things that could get you in trouble.
 
-Next, you need to run `ethtool` to toggle the `wol` capability of your
-network card to option `g`, which is the single-letter abbreviation of
-the term "magic packet", because that also contains the letter `g`.
-Are you still following this? Here is the command to do so:
+Next, you need to run `ethtool` to toggle the `g` capability of your
+network card, which is the single-letter abbreviation of the
+trademarked term MagicPacket™. I'm not kidding, read `man ethtool` if
+you don't believe me:
+
+    wol p|u|m|b|a|g|s|f|d...
+           Sets  Wake-on-LAN options.  Not all devices support
+           this.  The argument to this option is a  string  of
+           characters specifying which options to enable.
+
+           p   Wake on PHY activity
+           u   Wake on unicast messages
+           m   Wake on multicast messages
+           b   Wake on broadcast messages
+           a   Wake on ARP
+           g   Wake on MagicPacket™
+           s   Enable SecureOn™ password for MagicPacket™
+           f   Wake on filter(s)
+           d   Disable  (wake  on  nothing).  This option
+               clears all previous options.
+
+Here is the command to accomplish this:
 
     # ethtool -s <interface> wol g
 
-However, this will not work without *also* enabling option `b`, for
-Broadcast activity. From `man wakeonlan`:
+Unfortunately, for me, this did not work until I *also* enabled option
+`b` to wake on broadcast messages. This explanation from `man
+wakeonlan` may or may not explain why that is:
 
 > Unless you have static ARP tables you should use some kind of
 broadcast address (the broadcast address of the network where the
@@ -41,7 +60,7 @@ computer resides or the limited broadcast address). Default:
 255.255.255.255 (the limited broadcast address).
 
 Now running `wakeonlan <MAC_ADDRESS>` should work, but only once. To
-persist the `g` and `b` settings, you will have to re-enable it on
+persist the `g` and `b` options, you will have to re-enable it on
 every boot. In the old days, you could simply add the `ethtool`
 command to `/etc/rc.local` but nowadays even a single command like
 this needs their own standalone systemd service configuration:
@@ -53,7 +72,7 @@ Requires=network.target
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/ethtool -s %i wol g
+ExecStart=/usr/bin/ethtool -s %i wol bg
 Type=oneshot
 
 [Install]
@@ -76,9 +95,8 @@ is present on bus number 2 in slot number 3, or whatever.)
 
 Moreover, the `ethtool` command will not work at all when
 NetworkManager is installed, according to the following warning in
-[this AUR package](https://aur.archlinux.org/packages/wol-systemd),
-(whose source code is for some reason not available to view in a web
-browser):
+[this AUR package](https://aur.archlinux.org/packages/wol-systemd)
+that sets out to do the same thing:
 
     WARNING: You seem to have Network Manager installed.
     As of 1.0.6, this no longer works with NetworkManager.
