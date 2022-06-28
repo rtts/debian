@@ -50,18 +50,9 @@ Here is the command to accomplish this:
 
     # ethtool -s <interface> wol g
 
-Unfortunately, for me, this did not work until I *also* enabled option
-`b` to wake on broadcast messages. This explanation from `man
-wakeonlan` may or may not explain why that is:
-
-> Unless you have static ARP tables you should use some kind of
-broadcast address (the broadcast address of the network where the
-computer resides or the limited broadcast address). Default:
-255.255.255.255 (the limited broadcast address).
-
-Now running `wakeonlan <MAC_ADDRESS>` should work, but only once. To
-persist the `g` and `b` options, you will have to re-enable it on
-every boot. In the old days, you could simply add the `ethtool`
+Now waking up the machine by sending it a MagicPacket™ should work,
+but only once. To persist the `g` options, you will have to re-enable
+it on every boot. In the old days, you could simply add the `ethtool`
 command to `/etc/rc.local` but nowadays even a single command like
 this needs their own standalone systemd service configuration:
 
@@ -72,7 +63,7 @@ Requires=network.target
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/ethtool -s %i wol bg
+ExecStart=/usr/bin/ethtool -s %i wol g
 Type=oneshot
 
 [Install]
