@@ -51,7 +51,7 @@ Here is the command to accomplish this:
     # ethtool -s <interface> wol g
 
 Now waking up the machine by sending it a MagicPacket™ should work,
-but only once. To persist the `g` options, you will have to re-enable
+but only once. To persist the `g` option, you will have to re-enable
 it on every boot. In the old days, you could simply add the `ethtool`
 command to `/etc/rc.local` but nowadays even a single command like
 this needs their own standalone systemd service configuration:
@@ -77,12 +77,12 @@ wol`, and `systemctl pretty-please-with-sugar-on-top` to have the darn
 command run every time the computer boots. However, it turned out that
 supplying the correct value for the placeholder `%i` (or even finding
 the correct `man` page out of the 200+ systemd `man` pages that
-documents what `%i` even stands for) is impossible to do from a
-generic playbook role, because the name of the network device is
-unknown. (Again, in the good old days the name of the primary
-interface would simply be `eth0`, but they have changed it to a
-gibberish name like `enp1s2` to "helpfully" indicate that the device
-is present on bus number 2 in slot number 3, or whatever.)
+documents it) is impossible to do from a generic playbook role,
+because the name of the network device is unknown. (Again, in the good
+old days the name of the primary interface would simply be `eth0`, but
+they have changed it to a gibberish name like `enp1s2` to "helpfully"
+indicate that the device is present on bus number 2 in slot number 3,
+or whatever.)
 
 Moreover, the `ethtool` command will not work at all when
 NetworkManager is installed, according to the following warning in
