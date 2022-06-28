@@ -1,10 +1,10 @@
 # Wake-on-LAN
 
-This is a role and a rant about enabling Wake-on-LAN, a feature so
-forgotten that discovering it almost feels like re-inventing it. When
-it finally works, you can switch on the computer via the network,
-which is a useful and responsible thing to do when you want to
-conserve power by spinning up machines on demand.
+This is a rant about enabling Wake-on-LAN, a feature so forgotten that
+discovering it almost feels like re-inventing it. When it finally
+works, you can switch on the computer via the network, which is a
+useful and responsible thing to do when you want to conserve power by
+spinning up machines on demand.
 
 Unfortunately, hardware and software suppliers alike conspire against
 users to make this as hard as possible to enable. First, you need to
@@ -16,7 +16,7 @@ on by PCIE" or some other phrase that never uses the official term
 Then, you need to install some obscure package called `ethtool` that's
 distributed by kernel.org
 [separately](https://mirrors.edge.kernel.org/pub/software/) from the
-Linux source code, alongside forgotten beauties such as
+Linux kernel, alongside forgotten beauties such as
 [DeCSS](https://en.wikipedia.org/wiki/DeCSS):
 
 > DeCSS is a utility for stripping Cascading Style Sheet (CSS) tags
@@ -60,13 +60,13 @@ Type=oneshot
 WantedBy=multi-user.target
 ```
 
-So that is what this role initially set out to configure: Add this
+So that is what I initially set out to configure: Add this
 configuration to some hard-to-find subdirectory of systemd, then call
 `systemctl daemon-reload`, `systemctl enable wol`, `systemctl start
 wol`, and `systemctl pretty-please-with-sugar-on-top` to have the darn
 command run every time the computer boots. However, it turned out that
 supplying the correct value for the placeholder `%i` (or even finding
-the correct `man` page out of the 202 (!) systemd `man` pages that
+the correct `man` page out of the 200+ systemd `man` pages that
 documents what `%i` even stands for) is impossible to do from a
 generic playbook role, because the name of the network device is
 unknown. (Again, in the good old days the name of the primary
@@ -75,10 +75,9 @@ gibberish name like `enp1s2` to "helpfully" indicate that the device
 is present on bus number 2 in slot number 3, or whatever.)
 
 Moreover, the `ethtool` command will not work at all when
-NetworkManager is installed, according to the following according to
-the following warning in [this AUR
-package](https://aur.archlinux.org/packages/wol-systemd), (whose
-source code is for some reason not available to view in a web
+NetworkManager is installed, according to the following warning in
+[this AUR package](https://aur.archlinux.org/packages/wol-systemd),
+(whose source code is for some reason not available to view in a web
 browser):
 
     WARNING: You seem to have Network Manager installed.
@@ -90,11 +89,10 @@ browser):
 Even though that statement is not entirely correct (NetworkManager,
 even if installed, ignores interfaces that have been configured
 through `/etc/network/interfaces`), to maximize the chance of
-successfully enabling Wake-on-LAN this role chooses a different
-approach. It enables WoL of *every single network device* by
-overriding `/usr/lib/systemd/network/99-default.link` to add the
-`WakeOnLan` option to the `[Link]` section, as proposed by the Arch
-Wiki page
+successfully enabling Wake-on-LAN I chose a different approach. I
+enable WoL of *every single network device* by overriding
+`/usr/lib/systemd/network/99-default.link` to add the `WakeOnLan`
+option to the `[Link]` section, as proposed by the Arch Wiki page
 [here](https://wiki.archlinux.org/title/Wake-on-LAN#Make_it_persistent)
 and in the way recommended by this comment in the [default
 configuration
