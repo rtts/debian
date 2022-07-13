@@ -18,6 +18,6 @@
 - name: Canonicalize hostnames and forward agent
   become: true
   template:
-    src: 10-convenience
+    src: 10-convenience.conf
     dest: /etc/ssh/ssh_config.d/
   when: domain_name
