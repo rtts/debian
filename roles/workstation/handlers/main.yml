@@ -1,0 +1,6 @@
+- name: emacs
+  systemd:
+    scope: user
+    name: emacs
+    enabled: true
+    state: started
