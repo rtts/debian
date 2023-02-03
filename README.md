@@ -356,7 +356,7 @@ it!)
 ### Work
 
 To satisfy my employer's ISO 27001 requirement, the screens of all
-workstations are set to lock after 5 minutes of inactivity. To
+workstations are set to lock after 15 minutes of inactivity. To
 accomplish this, I used `xautolock` which is officially hosted by [one
 of the first web sites on the
 internet](https://en.wikipedia.org/wiki/Ibiblio#History):

@@ -4,4 +4,4 @@ xss-lock xtrlock &
 
 # xautolock locks the screen after inactivity (as a workaround for the
 # failing xss-lock)
-xautolock -locker xtrlock -time 5 &
+xautolock -locker xtrlock -time 15 &
