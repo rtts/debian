@@ -14,9 +14,10 @@ e() {
 export EDITOR="emacsclient -c"
 
 # Python
-workon() { . ~/.virtualenvs/$1/bin/activate; }
+workon() { . ~/.virtualenvs/"$1"/bin/activate; }
 mkvirtualenv() { [[ -n $1 ]] && python3 -m venv ~/.virtualenvs/$1 && workon $1; }
 rmvirtualenv() { [[ -n $1 ]] && rm -r ~/.virtualenvs/$1; }
+resetvirtualenv() { [[ -n $1 ]] && { rmvirtualenv "$1"; mkvirtualenv $1; } }
 alias cv='pushd $VIRTUAL_ENV/lib/python*/site-packages'
 alias run='workon $(basename $(pwd)); ./manage.py runserver'
 
