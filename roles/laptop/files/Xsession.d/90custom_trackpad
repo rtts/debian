@@ -9,3 +9,6 @@ xinput set-prop 'Synaptics TM2668-001' 'libinput Tapping Enabled' 1
 
 # T14
 xinput set-prop 'Synaptics TM3471-020' 'libinput Tapping Enabled' 1
+
+# Vivobook
+xinput set-prop 'ELAN1200:00 04F3:303E Touchpad' 'libinput Tapping Enabled' 1
