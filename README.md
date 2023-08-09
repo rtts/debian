@@ -41,11 +41,13 @@ take care of the remaining configuration.
 
 Let's return to the source and start with a minimal, vanilla Debian
 installation. I prefer to download the installer image
-[here](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/weekly-builds/amd64/iso-cd/)
-because this will get you the latest version of Debian including the
-non-free firmware that's often needed to get networking and sound to
-work properly. For servers, however, I recommend the rock-solid
-[stable release](https://www.debian.org/download).
+[here](https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/)
+because this will get you the testing version of Debian including the
+non-free firmware
+([now by default](https://www.debian.org/vote/2022/vote_003)!)
+that's often needed to get networking and sound to work properly. For
+servers, however, I recommend the rock-solid [stable
+release](https://www.debian.org/download).
 
 Write the image to a USB flash drive with:
 
