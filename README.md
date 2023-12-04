@@ -2,9 +2,7 @@
 
 ### *A complete, minimalist Debian setup for power users*
 
-**Whether or not you believe Free and Open Source Software is the
-saviour of humanity, it's also an incredibly practical way to use your
-computer. This repository contains the exact configuration of all my
+**This repository contains the exact configuration of all my
 workstations, gaming computers, laptops and even a couple of VPSes. Of
 course, your situation will differ, but I believe the installation
 instructions and Ansible roles contained herein will be a great
@@ -40,18 +38,10 @@ take care of the remaining configuration.
 ![Debian family tree](https://upload.wikimedia.org/wikipedia/commons/6/69/DebianFamilyTree1210.svg)
 
 Let's return to the source and start with a minimal, vanilla Debian
-installation. I prefer to download the installer image
-[here](https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/)
-because this will get you the testing version of Debian including the
-non-free firmware
-([now by default](https://www.debian.org/vote/2022/vote_003)!)
-that's often needed to get networking and sound to work properly. For
-servers, however, I recommend the rock-solid [stable
-release](https://www.debian.org/download).
+installation. Visit [Debian.org](https://www.debian.org/) and click
+Download, then write the image to a USB flash drive with:
 
-Write the image to a USB flash drive with:
-
-    sudo dd if=debian-testing-amd64-netinst.iso of=/dev/sdX
+    sudo dd if=debian-12.2.0-amd64-netinst.iso of=/dev/sdX
 
 Make sure you substitute `X` with the correct letter of your USB
 drive. If this is your first time installing GNU/Linux, you'll have to
@@ -81,24 +71,6 @@ account. This account will be given the power to become root using the
 Preseed](https://wiki.debian.org/DebianInstaller/Preseed) to this
 repository which will make all this happen automatically.
 
-> **Note**
->
-> Even when you have configured a WiFi connection during the
-> installation, the resulting system will not have WiFi. This is a bug
-> in the Debian installer. To work around it, switch to a VT during
-> the installation (`Ctrl-Alt-F2`), activate the console and copy the
-> network configuration to the target system with the following
-> command:
->
->     # cp /etc/network/interfaces /target/etc/network/interfaces
->
-> It should contain something like the following:
->
->     allow-hotplug wlp3s0
->     iface wlp3s0 inet dhcp
->         wpa-ssid <YOUR_SSID>
->         wpa-psk  <YOUR_PASSWORD>
-
 At the end of the installation you'll see this:
 
 ![Tasksel](https://raw.githubusercontent.com/rtts/debian/main/doc/tasksel.png)
@@ -108,6 +80,19 @@ utilities". After the installation is complete, boot into the new
 system and log in using the username and password you have set during
 installation. There is no graphical environment, yet, but be patient
 because we'll configure the important things first.
+
+> **Note**
+>
+> Even when you have configured a WiFi connection during the
+> installation, the resulting system may not have WiFi.
+>
+> One way to solve this is to boot the installer again and enter
+> "Rescue mode", follow the steps to get a root shell, and install
+> NetworkManager with `apt install network-manager`.
+>
+> Then, remove the USB drive, reboot into your system and execute:
+> `nmcli dev wifi connect <Your WiFi name> password <Your WiFi password>`
+
 
 ## Hardening SSH
 
@@ -367,18 +352,6 @@ the auto-locking behavior, remove the file
 `/etc/X11/Xsession.d/90custom_autolock` and restart X with `Windows`
 `Shift` `Q`.
 
-My work also requires me to use the closed-source
-[Slack](https://slack.com/downloads/linux) and
-[Teams](https://www.microsoft.com/en-us/microsoft-teams/download-app)
-clients. After downloading the `.deb` files, install them with `dpkg`:
-
-    $ sudo dpkg -i slack-desktop-*-amd64.deb
-    $ sudo dpkg -i teams_*_amd64.deb
-
-They both work fine, although for Slack I had to set Preferences →
-Advanced → Disable hardware acceleration to stop the app from crashing
-during video calls.
-
 It's possible to [configure mutt to connect to an Exchange
 server](https://jonathanh.co.uk/blog/mutt-setup/#connecting-to-exchange---davmail),
 but according to the linked blog:
@@ -388,18 +361,8 @@ but according to the linked blog:
 
 ## Maintenance
 
-Like any operating system, Debian publishes regular updates. I've made it
+Like any operating system, Debian publishes regular updates. Make it
 a habit to run the following commands regularly:
 
     $ sudo apt update
     $ sudo apt upgrade
-
-Also, because I like bleeding-edge software, I've edited
-`/etc/apt/sources.list` to contain the following:
-
-    deb http://ftp.nl.debian.org/debian/ sid main non-free contrib
-    deb-src http://ftp.nl.debian.org/debian/ sid main non-free contrib
-
-This means I'm running [Debian Sid](https://wiki.debian.org/DebianUnstable)
-a.k.a. "Unstable", although in my 10 years of running it I have never
-experienced any instability. Use Sid at your own risk.
