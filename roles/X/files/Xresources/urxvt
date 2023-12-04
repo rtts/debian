@@ -8,5 +8,5 @@ URxvt.color15: rgb:b2/b2/b2
 URxvt.scrollBar: False
 URxvt.visualBell: True
 URxvt.perl-ext: default,matcher
-URxvt.url-launcher: /usr/bin/chromium
+URxvt.url-launcher: /usr/bin/x-www-browser
 URxvt.matcher.Button: 1
