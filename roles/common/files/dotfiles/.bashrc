@@ -38,4 +38,4 @@ PS1="\$(git_prompt)\u@\h:\w\$ "
 
 # Source more stuff, if available.
 [[ -f ~/.aliases ]] && . ~/.aliases
-[[ -f ~/.Xaliases ]] &&. ~/.Xaliases
+[[ -n "$DISPLAY" ]] && [[ -f ~/.Xaliases ]] &&. ~/.Xaliases
