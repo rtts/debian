@@ -36,6 +36,6 @@ git_prompt() {
 }
 PS1="\$(git_prompt)\u@\h:\w\$ "
 
-# Source more stuff, if available
-. ~/.aliases 2> /dev/null
-. ~/.Xaliases 2> /dev/null
+# Source more stuff, if available.
+[[ -f ~/.aliases ]] && . ~/.aliases
+[[ -f ~/.Xaliases ]] &&. ~/.Xaliases
