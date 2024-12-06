@@ -4,6 +4,7 @@
     state: present
     name:
       - chromium
+      - dconf-cli
       - eog
       - evince
       - file-roller
@@ -91,6 +92,9 @@
   lineinfile:
     dest: /etc/pulse/default.pa
     line: load-module module-zeroconf-discover
+
+- name: Dark mode
+  command: dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
 
 - name: Copy graphical dotfiles
   become: true
