@@ -6,13 +6,13 @@
       - xbattbar
       - xbindkeys
 
-- name: Xsession trackpad, battery bar, multimedia keys
+- name: Trackpad, battery bar, multimedia keys
   become: true
   copy:
     src: Xsession.d/
     dest: /etc/X11/Xsession.d/
 
-- name: Volume and brightness
+- name: Volume and brightness keys
   become: true
   copy:
     src: "{{ item }}"
@@ -21,6 +21,14 @@
   loop:
     - volume
     - brightness
+
+- name: Lid switch
+  become: true
+  lineinfile:
+    path: /etc/systemd/logind.conf
+    regexp: HandleLidSwitch=suspend
+    line: HandleLidSwitch=suspend
+    state: present
 
 - name: Copy laptop dotfiles
   become: true
