@@ -15,9 +15,9 @@ to its maximum potential.**
 
 Yes, it kind of is! Except that all that I'm distributing is a bunch
 of [Ansible](https://docs.ansible.com/ansible/latest/index.html) roles
-and the installation instructions. Even if for nothing but my own
-benefit, I would love to one day compile all this into a custom Debian
-installer.
+and the installation instructions. Think of this as a dotfiles
+repository that also includes the playbook to install [the
+dotfiles](https://github.com/search?q=repo%3Artts%2Fdebian+path%3Adotfiles&type=code).
 
 ### Why should I use this instead of distribution X?
 
@@ -39,19 +39,12 @@ take care of the remaining configuration.
 
 Let's return to the source and start with a minimal, vanilla Debian
 installation. Visit [Debian.org](https://www.debian.org/) and click
-Download, then write the image to a USB flash drive with:
+"Download", then write the image to a USB flash drive with:
 
     sudo dd if=debian-12.2.0-amd64-netinst.iso of=/dev/sdX
 
 Make sure you substitute `X` with the correct letter of your USB
-drive. If this is your first time installing GNU/Linux, you'll have to
-google for an alternative to `dd` for the operating system you're
-currently using. There are plenty, but none of them are as
-straightforward to use as the original `dd`. By the way, this is one
-of the main reasons I enjoy using GNU/Linux so much: for almost every
-imaginable task there is a suitable tool that does the job well. Also,
-all of these tools can easily be scripted, but we'll get to that
-later. For now, do your best to reboot your computer in such a way
+drive). Then, do your best to reboot your computer in such a way
 that you arrive at the following screen:
 
 ![Debian installer](https://raw.githubusercontent.com/rtts/debian/main/doc/debian.png)
@@ -93,34 +86,17 @@ because we'll configure the important things first.
 > Then, remove the USB drive, reboot into your system and execute:
 > `nmcli dev wifi connect <Your WiFi name> password <Your WiFi password>`
 
+## Give yourself (remote) access
 
-## Hardening SSH
-
-The only program currently running on your fresh installation is SSH.
-Let's make sure it's running securely by logging in, configuring
-public/private key authentication, and disabling password
-authentication, Once you've accomplished that, you will have remote
-access with sudo powers, which is all that is needed to take full
-control over your computer.
-
-On the host computer, run:
+On the target computer, run:
 
     $ sudo apt install libnss-mdns
 
-On the host computer or on another computer, if you have one, run:
+On the target computer or another computer, run:
 
     $ ssh-copy-id <hostname>.local
 
-Finally, on the host computer, run:
-
-    $ sudoedit /etc/ssh/sshd
-
-And change the line containing `PasswordAuthentication` to:
-
-    PasswordAuthentication no
-
-To make the remaining steps a little easier, give yourself
-passwordless sudo access by running:
+Finally, on the target computer, run:
 
     $ sudo visudo
 
@@ -128,14 +104,13 @@ And change the line containing `%sudo` to:
 
     %sudo ALL=(ALL:ALL) NOPASSWD:ALL
 
-Not coincidentally, this is everything that's required to run the
-Ansible playbook from this repository, which will completely set up
-the system for general use.
+This is everything that's required to run the Ansible playbook from
+this repository, which will take care of the rest of the installation.
 
 ## Run the playbook
 
-On either the host computer or on another computer with SSH access to
-the host computer, install [Git](https://git-scm.com/) and
+On either the target computer or on another computer, install
+[Git](https://git-scm.com/) and
 [Ansible](https://docs.ansible.com/ansible/latest/index.html) and
 clone this repository:
 
@@ -144,24 +119,16 @@ clone this repository:
     $ cd debian
 
 The playbook is divided into a number of hosts, with each host having
-a number of roles. The roles are meant to be composable, so you can
-easily choose to, for example, configure a host with the `common` and
-`X` roles, but not with the `workstation` role. I personally use that
-combination for computers that are being used as kiosks in various
-locations, such as a copy shop and a museum. Another useful
-combination is `common`, `database`, and `webserver` for the VPS that
-serves my [personal home page](https://jaapjoris.nl/). That is the
-power of using a single source of configuration for all your
-computers!
+a number of roles. The roles are meant to be composable, so you can,
+for example, configure a host with the `common` and `X` roles for use
+as a [media player](https://github.com/rtts/median).
 
 For now, however, let's assume you are setting up a personal computer
 that is in your physical possesion, such as a laptop or a desktop
 computer. Open the file `inventory.ini` and add your hostname to the
 `[workstations]` section and, if it's a laptop, to the `[laptops]`
 section. If you want the system to be able to send and receive email,
-please also provide your email credentials (optional). I highly recommend
-[Fastmail](https://www.fastmail.com/) as an email provider using their
-[app passwords](https://www.fastmail.help/hc/en-us/articles/360058752854-App-passwords).
+provide your email credentials (optional).
 
 Now run the playbook!
 
@@ -170,59 +137,54 @@ Now run the playbook!
 ## Using the system
 
 Congratulations! Your system has been fully set up for general use,
-with a number of useful software packages installed and thousands more
-just one `apt install` away. Let me guide you to how to use this setup
-and how to customize it to your wishes.
-
-After the system boots, you will be greeted with the following
-message of the day:
+After the system boots, you will be greeted with the following message
+of the day:
 
 ![Message of the day](https://raw.githubusercontent.com/rtts/debian/main/doc/motd.png)
 
-This message is shown in the blazingly fast terminal emulator
+This message is shown in
 [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
 displayed by the tiling window manager [xmonad](https://xmonad.org/).
-A single terminal is automatically launched at startup, because I like
-it that way, but you can easily specify another program to launch by
-editing the `.xsession` file in your home directory. Also have look at
-the other dotfiles that were placed there by the playbook.
+A single terminal is automatically launched at startup. You can
+specify which program(s) launch at startup by editing `~/.xsession`.
+Also have look at the other dotfiles that were installed.
 
 > **Note**
 >
 > All dotfiles (except `.bashrc`) are placed by Ansible with the
 > [force](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html#parameter-force)
-> parameter set to `false`, which means that your local changes will
-> not be overwritten when you re-run the playbook. The dotfiles are
-> also written to the `/etc/skel` directory, so they will be installed
-> for new users created by `adduser`. This is also a convenient
-> location to check for updates to dotfiles.
+> parameter set to `false`, which means that local changes will not be
+> overwritten when you re-run the playbook. The dotfiles are also
+> written to the `/etc/skel` directory, so they will be installed for
+> new users created by `adduser`. This is also a convenient location
+> to check for updates to dotfiles.
 
-Here are the most important keyboard shortcuts you need to know:
+Here are some useful keyboard shortcuts (note: `Mod` is mapped to the
+windows key by the `X` role):
 
-- `Windows` `Shift` `Enter` opens a new terminal.
-- `Windows` `[1-9]` switches to the virtual desktop 1 through 9.
-- `Windows` `P` launches `dmenu`. Type the starting letters of a
+- `Mod` `Shift` `Enter` opens a new terminal.
+- `Mod` `[1-9]` switches to the virtual desktop 1 through 9.
+- `Mod` `P` launches `dmenu`. Type the starting letters of a
   graphical program, such as `chromium` or `firefox` and press Enter
   to launch it.
-- `Windows` `Tab` cycles between the windows on the current virtual
+- `Mod` `Tab` cycles between the windows on the current virtual
   desktop.
-- `Windows` `Space` switches between fullscreen and tiled window
+- `Mod` `Space` switches between fullscreen and tiled window
   layouts.
-- `Windows` `Enter` moves a window to the top of the window stack.
-- When in tiled layout, `Windows` `,` and `Windows` `.` do something
-  that's hard to explain, but is usually exactly what you need.
-- To change the size of tiled windows, `Windows` `H` and `Windows` `L`
-  You can also change the size of any window by holding `Windows`
+- `Mod` `Enter` moves a window to the top of the window stack.
+- When in tiled layout, `Mod` `,` and `Mod` `.` do something
+  useful that's hard to explain. Try it out!
+- To change the size of tiled windows, `Mod` `H` and `Mod` `L`
+  You can also change the size of any window by holding `Mod`
   and drag it using the right mouse button.
-- Dragging a window while holding the `Windows` key will make it
-  floating. You can make it tiled again with `Windows` `T`.
+- Dragging a window while holding the `Mod` key will make it
+  floating. You can make it tiled again with `Mod` `T`.
 
-You can view all available keybindings with `Windows` `Shift` `/`.
+You can view all available keybindings with `Mod` `Shift` `/`.
 
 ## More possibilities
 
-In no particular order, here are some things that you can do using
-this setup.
+Here are the things that I use this setup for:
 
 ### Web browsing
 
@@ -238,8 +200,8 @@ extension so you might want to give that a try. The recently introduced
 [Total Cookie Protection](https://blog.mozilla.org/en/products/firefox/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/)
 sounds very promising.
 
-Finally, I highly recommend setting your default search engine to
-DuckDuckGo so you have access to their incredible [Bang
+I highly recommend setting your default search engine to DuckDuckGo so
+you have access to their incredible [Bang
 syntax](https://duckduckgo.com/bang). In practice, however, most of my
 web searches still use the `!g` bang to search Google.
 
@@ -279,17 +241,14 @@ visit [LDraw.org](https://ldraw.org/).
 
 ### Photography
 
-As a photographer I like to use [Geeqie](https://www.geeqie.org/)
-(`apt install geeqie`) to cull the photos after a shoot, then use
-[darktable](https://www.darktable.org/) (`apt install darktable`)
-to post-process them. Finally, I use
-[Photog!](https://pypi.org/project/photog/) (`pip install photog`)
-to generate [my photography website](https://www.superformosa.nl/).
-Of course, GIMP and Inkscape cannot be missing in any designer's
-toolbox and are therefore already installed by the `Xworkstation`
-role.
+I use [Geeqie](https://www.geeqie.org/) (`apt install geeqie`) to cull
+the photos after a shoot, then use
+[darktable](https://www.darktable.org/) (`apt install darktable`) to
+post-process them. Finally, I use
+[Photog!](https://pypi.org/project/photog/) (`pip install photog`) to
+generate [my photography website](https://www.superformosa.nl/).
 
-### Audio recording
+### Audio
 
 I use [Audacity](https://www.audacityteam.org/) (`apt install
 audacity`) to record high-quality audio using a Focusrite Scarlet 2i2,
@@ -297,26 +256,29 @@ which works phenomenally well under Linux and PulseAudio. All I needed
 to do was plug the device in and attach speakers, and all audio was
 routed correctly by default.
 
+### Video
+
+Have a look at [FFTok](https://github.com/rtts/fftok) for some handy
+`ffmpeg` shortcuts to cut, split, crop, scale, combine and transcode
+video files.
+
 ### Programming
 
 The terminal-first computing environment configured by this playbook
-naturally lends itself well to all kinds of programming. Recommended
-languages to get started are Bash, Python, Perl, Ruby, Haskell (I dare
-you to edit the `xmonad` configuration file!), or PHP.
+naturally lends itself well to all kinds of programming. Try for
+example Bash, Python, Perl, Ruby, or Haskell (I dare you to edit the
+`xmonad` configuration file!).
 
-### Entertainment
+### Media
 
-I love [mpv](https://mpv.io/) so much it's included in the `X` role by
-default. Read `man mpv` to find out all the available options of this
-grand successor to `mplayer`. Unfortunately, it is currently not easy
-to legally acquire stuff to play with `mpv`, unless you resort to
-semi-legal options like
-[youtube-dl](http://ytdl-org.github.io/youtube-dl/) (`apt install
-youtube-dl`) or illegal options like Yify. Netflix runs in Firefox
-after [enabling DRM](https://support.mozilla.org/en-US/kb/enable-drm)
-but not in Chromium, because it lacks the required Widevine DRM.
-Please [fight for alternatives to
-DRM](https://www.defectivebydesign.org/).
+[mpv](https://mpv.io/) is included in the `X` role by default. Read
+`man mpv` to find out all the available options of this grand
+successor to `mplayer`.
+
+Streaming services work in Firefox after [enabling
+DRM](https://support.mozilla.org/en-US/kb/enable-drm) but not in
+Chromium, because it lacks the required Widevine DRM. Please [fight
+for alternatives to DRM](https://www.defectivebydesign.org/).
 
 ### Gaming
 
@@ -334,22 +296,35 @@ and run it:
 
 The `--no-fullscreen` argument is there because `xmonad` will already
 tile the IA Launcher window to be fullscreen. Alternatively, you can
-add your computer to the `gamestations` group to configure it to run
-IA Launcher as a window manager, but that is not recommended unless
-you plan to use the computer for nothing else but retro gaming. (I've
-used this role to exhibit games in a public library, the guests loved
-it!)
+add your computer to the `gamestations` group to configure it as a
+gaming kiosk.
+
+### Kiosks
+
+The `kiosks` group only installs the `common` and `X` roles intended
+for single-use setups, such as:
+
+- Digital signage
+- Public library
+- [Media player](https://github.com/rtts/median)
+
+You can turn your computer into a locked down Chromebook by adding the
+following to the end of `~/.xsession`:
+
+```
+exec chromium --kiosk
+```
 
 ### Work
 
 To satisfy my employer's ISO 27001 requirement, the screens of all
-workstations are set to lock after 15 minutes of inactivity. To
-accomplish this, I used `xautolock` which is officially hosted by [one
+workstations are set to lock after 15 minutes of inactivity. This
+is accomplished with `xautolock`, which is officially hosted by [one
 of the first web sites on the
 internet](https://en.wikipedia.org/wiki/Ibiblio#History):
 `http://sunsite.unc.edu/pub/Linux/X11/screensavers/`. To get rid of
 the auto-locking behavior, remove the file
-`/etc/X11/Xsession.d/90custom_autolock` and restart X with `Windows`
+`/etc/X11/Xsession.d/90custom_autolock` and restart X with `Mod`
 `Shift` `Q`.
 
 It's possible to [configure mutt to connect to an Exchange
