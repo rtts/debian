@@ -41,7 +41,7 @@ Let's return to the source and start with a minimal, vanilla Debian
 installation. Visit [Debian.org](https://www.debian.org/) and click
 "Download", then write the image to a USB flash drive with:
 
-    sudo dd if=debian-12.2.0-amd64-netinst.iso of=/dev/sdX
+    sudo dd if=debian-12.8.0-amd64-netinst.iso of=/dev/sdX
 
 Make sure you substitute `X` with the correct letter of your USB
 drive). Then, do your best to reboot your computer in such a way
