@@ -1,1 +1,1 @@
-xbattbar -c &
+xbattbar -c -t1 &
