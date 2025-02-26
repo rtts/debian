@@ -4,3 +4,4 @@ xset b off
 xset s off
 xset s 0 0
 xset -dpms
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark

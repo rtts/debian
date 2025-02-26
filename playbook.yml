@@ -24,6 +24,8 @@
       tags: mailserver
     - role: mailclient
       tags: mailclient
+    - role: database
+      tags: database
     - role: workstation
       tags: workstation
     - role: X
