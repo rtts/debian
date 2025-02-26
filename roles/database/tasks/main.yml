@@ -17,6 +17,7 @@
   loop:
     - 15
     - 16
+    - 17
 
 - name: Daily database backups
   become: true
