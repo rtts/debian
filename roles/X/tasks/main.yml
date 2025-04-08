@@ -7,6 +7,7 @@
       - dconf-cli
       - eog
       - evince
+      - dconf-cli
       - file-roller
       - ghc
       - libghc-xmonad-contrib-dev
