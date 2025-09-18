@@ -1,17 +1,11 @@
 # SSH Agent
 ssh-add -l > /dev/null || ssh-add
 
+# Jmacs
+export EDITOR=jmacs
+
 # Emacs
-unalias e 2> /dev/null
-e() {
-    if [[ $(emacsclient -ne '(length (frame-list))') -gt 1 ]]
-    then
-        emacsclient -n "$@"
-    else
-        emacsclient -nc "$@"
-    fi
-}
-export EDITOR="emacsclient -c"
+alias e='emacsclient -n -r'
 
 # Python
 workon() { . ~/.virtualenvs/"$1"/bin/activate; }
