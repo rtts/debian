@@ -9,7 +9,7 @@
   copy:
     dest: /etc/mailname
     content: "{{ inventory_hostname_short }}.{{ domain_name }}\n"
-  when: domain_name
+  when: domain_name is defined
 
 - name: Configure mail server
   become: true
@@ -17,14 +17,14 @@
     src: update-exim4.conf.conf
     dest: /etc/exim4/
   notify: update exim4
-  when: domain_name and smtp_server
+  when: domain_name is defined and smtp_server is defined
 
 - name: Set SMTP credentials
   become: true
   copy:
     content: "{{ smtp_server }}:{{ smtp_username }}:{{ smtp_password }}\n"
     dest: /etc/exim4/passwd.client
-  when: smtp_server and smtp_username and smtp_password
+  when: smtp_server is defined and smtp_username is defined and smtp_password is defined
 
 - name: Forward all system mail to {{ email_address }}
   become: true
@@ -32,4 +32,4 @@
     path: /etc/aliases
     regexp: 'root:'
     line: 'root: {{ email_address }}'
-  when: email_address
+  when: email_address is defined

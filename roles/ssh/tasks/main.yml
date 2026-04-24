@@ -20,4 +20,4 @@
   template:
     src: 10-convenience.conf
     dest: /etc/ssh/ssh_config.d/
-  when: domain_name
+  when: domain_name is defined
