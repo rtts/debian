@@ -15,8 +15,6 @@
     mode: 0640
   notify: restart postgres
   loop:
-    - 15
-    - 16
     - 17
     - 18
 
