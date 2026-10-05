@@ -2,22 +2,21 @@
 
 ### *A complete, minimalist Debian setup for power users*
 
-**This repository contains the exact configuration of all my
-workstations, gaming computers, laptops and even a couple of VPSes. Of
-course, your situation will differ, but I believe the installation
-instructions and Ansible roles contained herein will be a great
-starting point for anyone who wants to enjoy using a minimalist setup
-to its maximum potential.**
+**This repository contains the configuration of all my workstations,
+gaming computers, laptops and even a couple of VPSes. Of course, your
+situation will differ, but I believe the installation instructions and
+Ansible roles contained herein will be a great starting point for
+anyone who wants to enjoy using a minimalist setup to its maximum
+potential.**
 
 ## FAQ
 
 ### Is this a GNU/Linux distribution?
 
-Yes, it kind of is! Except that all that I'm distributing is a bunch
-of [Ansible](https://docs.ansible.com/ansible/latest/index.html) roles
+Yes, kind of! Except that all that I'm distributing is a bunch of
+[Ansible](https://docs.ansible.com/ansible/latest/index.html) roles
 and the installation instructions. Think of this as a dotfiles
-repository that also includes the playbook to install [the
-dotfiles](https://github.com/search?q=repo%3Artts%2Fdebian+path%3Adotfiles&type=code).
+repository that also includes the playbook to install the dotfiles.
 
 ### Why should I use this instead of distribution X?
 
