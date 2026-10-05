@@ -193,17 +193,13 @@ Personally, I like to edit `/etc/chromium.d/default-flags` to add the
 `--incognito` flag so that Chromium will always browse incognito, and
 then use Firefox for all my non-incognito browsing.
 
-Both browsers include uBlock Origin through the `webext-ublock-origin-*`
-Debian packages. I have also heard good things about the
+Firefox includes uBlock Origin through the `webext-ublock-origin-firefox`
+Debian package. I have also heard good things about the
 [Firefox Multi-Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
-extension so you might want to give that a try. The recently introduced
-[Total Cookie Protection](https://blog.mozilla.org/en/products/firefox/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/)
-sounds very promising.
+extension so you might want to give that a try.
 
 I highly recommend setting your default search engine to DuckDuckGo so
-you have access to their incredible [Bang
-syntax](https://duckduckgo.com/bang). In practice, however, most of my
-web searches still use the `!g` bang to search Google.
+you have access to their incredible [Bang syntax](https://duckduckgo.com/bang).
 
 ### Email
 

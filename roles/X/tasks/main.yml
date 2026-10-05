@@ -20,7 +20,6 @@
       - suckless-tools
       - thunar
       - trayer
-      - webext-ublock-origin-chromium
       - webext-ublock-origin-firefox
       - x11-apps
       - x11-xserver-utils
