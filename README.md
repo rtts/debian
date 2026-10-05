@@ -121,6 +121,10 @@ Now run the playbook!
 
     $ ./playbook.yml
 
+> *Note to self:*
+>
+> Run `./playbook.yml -i path/to/inventory.ini -l <hostname>` instead.
+
 ## Using the system
 
 Congratulations! Your system has been fully set up for general use,
