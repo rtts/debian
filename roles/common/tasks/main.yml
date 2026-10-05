@@ -50,6 +50,7 @@
 
 - name: Configure Jmacs
   become: true
+  ignore_errors: true
   lineinfile:
     path: /etc/joe/jmacsrc
     regexp: '^[^-]*-{{ item }}'
