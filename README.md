@@ -41,7 +41,7 @@ Let's return to the source and start with a minimal, vanilla Debian
 installation. Visit [Debian.org](https://www.debian.org/) and click
 "Download", then write the image to a USB flash drive with:
 
-    sudo dd if=debian-12.8.0-amd64-netinst.iso of=/dev/sdX
+    sudo dd if=debian-13.7.0-amd64-netinst.iso of=/dev/sdX
 
 Make sure you substitute `X` with the correct letter of your USB
 drive). Then, do your best to reboot your computer in such a way
@@ -73,18 +73,6 @@ utilities". After the installation is complete, boot into the new
 system and log in using the username and password you have set during
 installation. There is no graphical environment, yet, but be patient
 because we'll configure the important things first.
-
-> **Note**
->
-> Even when you have configured a WiFi connection during the
-> installation, the resulting system may not have WiFi.
->
-> One way to solve this is to boot the installer again and enter
-> "Rescue mode", follow the steps to get a root shell, and install
-> NetworkManager with `apt install network-manager`.
->
-> Then, remove the USB drive, reboot into your system and execute:
-> `nmcli dev wifi connect <Your WiFi name> password <Your WiFi password>`
 
 ## Give yourself (remote) access
 
