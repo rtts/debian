@@ -2,11 +2,15 @@ import XMonad
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
+import qualified XMonad.StackSet as W
+
+doSink = ask >>= doF . W.sink
 
 myManageHook = composeAll
   [ className =? "Gimp" --> doFloat
   , className =? "Clock" --> doIgnore
   , className =? "trayer" --> doIgnore
+  , className =? "dosbox" --> doSink
   ]
 
 myLayout = full ||| tiled
