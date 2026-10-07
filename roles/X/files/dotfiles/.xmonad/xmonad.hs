@@ -11,6 +11,7 @@ myManageHook = composeAll
   , className =? "Clock" --> doIgnore
   , className =? "trayer" --> doIgnore
   , className =? "dosbox" --> doSink
+  , className =? "ialauncher" --> doSink
   ]
 
 myLayout = full ||| tiled
