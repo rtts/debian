@@ -1,10 +1,8 @@
 import XMonad
+import XMonad.Hooks.ManageHelpers (doSink)
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
-
-doSink = ask >>= doF . W.sink
 
 myManageHook = composeAll
   [ className =? "Gimp" --> doFloat
