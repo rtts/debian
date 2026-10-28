@@ -6,7 +6,7 @@
 
 - name: Allow this host to access all others
   authorized_key:
-    user: '{{ ansible_user_id }}'
+    user: "{{ ansible_facts['user_id'] }}"
     state: present
     key: '{{ public_key.stdout }}'
   delegate_to: '{{ item }}'

@@ -18,4 +18,4 @@
 - name: Use IA Launcher as window manager
   copy:
     src: dotfiles/
-    dest: /home/{{ ansible_user_id }}/
+    dest: /home/{{ ansible_facts['user_id'] }}/

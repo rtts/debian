@@ -67,9 +67,9 @@
     name: root
     generate_ssh_key: true
 
-- name: Generate SSH keys for {{ ansible_user_id }}
+- name: Generate SSH keys for {{ ansible_facts['user_id'] }}
   user:
-    name: '{{ ansible_user_id }}'
+    name: "{{ ansible_facts['user_id'] }}"
     generate_ssh_key: true
 
 - name: Find pre-existing message-of-the-day scripts
@@ -112,7 +112,7 @@
     owner: "{{ item.owner }}"
     force: true
   loop:
-    - dest: /home/{{ ansible_user_id }}/
-      owner: "{{ ansible_user_id }}"
+    - dest: /home/{{ ansible_facts['user_id'] }}/
+      owner: "{{ ansible_facts['user_id'] }}"
     - dest: /etc/skel/
       owner: root

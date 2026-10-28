@@ -32,8 +32,8 @@
     owner: "{{ item.owner }}"
     force: "{{ item.force }}"
   loop:
-    - dest: /home/{{ ansible_user_id }}/
-      owner: "{{ ansible_user_id }}"
+    - dest: /home/{{ ansible_facts['user_id'] }}/
+      owner: "{{ ansible_facts['user_id'] }}"
       force: false
     - dest: /etc/skel/
       owner: root
