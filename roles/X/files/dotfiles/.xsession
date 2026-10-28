@@ -1,5 +1,5 @@
 nm-applet &
 oclock -transparent -bd white -fg white -geometry 30x30-2+0 &
-trayer --edge top --widthtype request --align left --transparent true --alpha 255 &
+stalonetray --geometry 1x1+0+0 --icon-gravity NW --grow-gravity W --transparent true &
 x-terminal-emulator &
 exec xmonad

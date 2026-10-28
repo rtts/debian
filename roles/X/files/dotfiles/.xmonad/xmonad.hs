@@ -7,7 +7,7 @@ import XMonad.Layout.NoBorders
 myManageHook = composeAll
   [ className =? "Gimp" --> doFloat
   , className =? "Clock" --> doIgnore
-  , className =? "trayer" --> doIgnore
+  , className =? "stalonetray" --> doIgnore
   , className =? "dosbox" --> doSink
   , className =? "ialauncher" --> doSink
   ]

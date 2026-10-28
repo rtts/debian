@@ -6,20 +6,21 @@
       - chromium
       - dconf-cli
       - eog
-      - evince
+      # - evince
       - dconf-cli
       - file-roller
       - ghc
       - libghc-xmonad-contrib-dev
       - mpv
-      - network-manager-gnome
+      - network-manager-applet
+      - nm-connection-editor
       - pavucontrol
       - pulseaudio
       - pulseaudio-module-zeroconf
       - rxvt-unicode
+      - stalonetray
       - suckless-tools
       - thunar
-      - trayer
       - webext-ublock-origin-firefox
       - x11-apps
       - x11-xserver-utils
