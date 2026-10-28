@@ -73,6 +73,28 @@ system and log in using the username and password you have set during
 installation. There is no graphical environment, yet, but be patient
 because we'll configure the important things first.
 
+### Wifi issues?
+
+You're not alone! With Debian 14 I ran into the issue that the
+installer didn't have Wi-Fi, and so could only install the bare
+minimum. The resulting system also didn't have Wi-Fi. Solution:
+
+- Boot into the bare system.
+- Run the correct `apt-cdrom` command to be able to install packages.
+- Run `sudo apt install wpasupplicant`
+- Edit `/etc/network/interfaces` and add the following:
+   ```
+   auto wlp0s20f3
+   iface wlp0s20f3 inet dhcp
+       wpa-ssid "SSID"
+       wpa-psk "Password"
+   ```
+- Run `sudo ifdown -v wlp0s20f3`
+- Run `sudo ifup -v wlp0s20f3`
+
+Voilà! Now there is internet!
+
+
 ## Give yourself (remote) access
 
 On the target computer, run:
