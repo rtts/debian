@@ -51,11 +51,11 @@
 - name: Configure Jmacs
   become: true
   ignore_errors: true
-  lineinfile:
+  replace:
     path: /etc/joe/jmacsrc
-    regexp: '^[^-]*-{{ item }}'
-    backrefs: yes
-    line: '-{{ item }}'
+    encoding: latin-1
+    regexp: '^[^-\n]*(-{{ item }}\b)'
+    replace: '\1'
   loop:
     - nobackups
     - nodeadjoe
