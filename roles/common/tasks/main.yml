@@ -42,6 +42,24 @@
     regexp: XKBOPTIONS
     line: 'XKBOPTIONS="ctrl:nocaps,compose:prsc,lv3:ralt_switch"'
 
+# Note to self: long gone are the days when the loglevel applied to
+# the kernel. The messages you see during boot come from Plymouth. If
+# they scroll by too fast you can re-read them in /var/log/boot.log
+- name: Be quiet
+  become: true
+  copy:
+    dest: /etc/default/grub.d/loglevel.cfg
+    content: |
+      GRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT loglevel=2"
+  register: grub_loglevel
+
+- name: Update GRUB
+  become: true
+  command: update-grub
+  args:
+    removes: /usr/sbin/update-grub  # clever
+  when: grub_loglevel is changed
+
 - name: Set default editor to Jmacs
   become: true
   alternatives:
